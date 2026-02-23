@@ -18,6 +18,7 @@ namespace Assets._Asteroids.Logic.Weapon
         
         private ProjectileFactory _factory;
         public event Action<int> OnCountChanged;
+        public event Action<float, float> OnReloadTimeChanged;
 
         [Inject]
         public void Construct(ProjectileFactory factory)

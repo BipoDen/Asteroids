@@ -1,9 +1,11 @@
 using System;
+using Assets._Asteroids.Logic.Entities.Player;
 using Assets._Asteroids.Logic.Factory;
 using Assets._Asteroids.Logic.Services;
 using Assets._Asteroids.Logic.Weapon;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace Assets._Asteroids.Logic.UI
@@ -11,17 +13,25 @@ namespace Assets._Asteroids.Logic.UI
     public class GameplayUI : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI _scoreText;
+        [SerializeField] private TextMeshProUGUI _coordsText;
+        [SerializeField] private TextMeshProUGUI _rotationText;
         [SerializeField] private TextMeshProUGUI _secondaryCountText;
+        [SerializeField] private Slider _laserCooldown;
         [SerializeField] private GameOverPanel _gameOverPanel;
         
+        private SpaceshipController _player;
         private GameState _gameState;
         private ScoreService _scoreService;
         private IWeapon _secondaryWeapon;
 
         [Inject]
-        public void Construct(ScoreService scoreService, [Inject(Id = "Secondary")] IWeapon secondaryWeapon, GameState gameState)
+        public void Construct(ScoreService scoreService, 
+            SpaceshipController player, 
+            [Inject(Id = "Secondary")] IWeapon secondaryWeapon, 
+            GameState gameState)
         {
             _scoreService = scoreService;
+            _player = player;
             _secondaryWeapon = secondaryWeapon;
             _gameState = gameState;
             _gameState.OnGameOver += ShowGameOverPanel;
@@ -31,6 +41,9 @@ namespace Assets._Asteroids.Logic.UI
         {
             _scoreService.OnScoreChanged += ChangeScore;
             _secondaryWeapon.OnCountChanged += ChangeSecondaryCount;
+            _secondaryWeapon.OnReloadTimeChanged += ChangeSecondaryCooldown;
+            _player.OnMove += ChangePlayerCoordinates;
+            _player.OnRotate += ChangePlayerRotation;
         }
 
         private void ChangeScore(int score)
@@ -41,6 +54,21 @@ namespace Assets._Asteroids.Logic.UI
         private void ChangeSecondaryCount(int count)
         {
             _secondaryCountText.text = $"Lasers left: {count.ToString()}";
+        }
+
+        private void ChangeSecondaryCooldown(float curretCooldown, float cooldown)
+        {
+            _laserCooldown.value = curretCooldown / cooldown;
+        }
+
+        private void ChangePlayerCoordinates(Vector2 coords)
+        {
+            _coordsText.text = $"{coords.x:F2}, {coords.y:F2}";
+        }
+
+        private void ChangePlayerRotation(float zAngle)
+        {
+            _rotationText.text = $"{zAngle:F2}";
         }
 
         private void ShowGameOverPanel()

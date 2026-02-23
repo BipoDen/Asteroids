@@ -23,6 +23,7 @@ namespace Assets._Asteroids.Logic.Weapon
         private bool _isLaserReloading = false;
         
         public event Action<int> OnCountChanged;
+        public event Action<float, float> OnReloadTimeChanged;
         
         [Inject]
         public void Construct(LaserView laserPrefab)
@@ -72,7 +73,14 @@ namespace Assets._Asteroids.Logic.Weapon
             _isLaserReloading = true;
             while (LaserCount < MaxLaserCount)
             {
-                await UniTask.Delay(TimeSpan.FromSeconds(_laserCooldown));
+                float endTime = Time.time + _laserCooldown;
+
+                while (Time.time < endTime)
+                {
+                    float timeLeft = endTime - Time.time;
+                    OnReloadTimeChanged?.Invoke(timeLeft, _laserCooldown);
+                    await UniTask.Yield();
+                }
                 LaserCount++;
                 OnCountChanged?.Invoke(LaserCount);
             }

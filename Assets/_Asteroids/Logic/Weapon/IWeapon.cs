@@ -8,5 +8,6 @@ namespace Assets._Asteroids.Logic.Weapon
         public void Init(Transform launchOffset);
         public void HandleFire();
         public event Action<int> OnCountChanged;
+        public event Action<float, float> OnReloadTimeChanged;
     }
 }

@@ -21,6 +21,8 @@ namespace Assets._Asteroids.Logic.Entities.Player
         private Transform _startPosition;
         private GameState _gameState;
         public event Action OnGameOver;
+        public event Action<Vector2> OnMove;
+        public event Action<float> OnRotate;
 
         private void Awake()
         {
@@ -48,6 +50,7 @@ namespace Assets._Asteroids.Logic.Entities.Player
             if (input <= 0f || _gameState.IsGamePaused)
                 return;
             
+            OnMove?.Invoke(transform.position);
             Vector2 forwardForce = transform.up * _moveAcceleration * input;
             _rigidbody2D.AddForce(forwardForce, ForceMode2D.Force);
                 
@@ -62,6 +65,8 @@ namespace Assets._Asteroids.Logic.Entities.Player
         {
             if(_gameState.IsGamePaused)
                 return;
+            
+            OnRotate?.Invoke(transform.rotation.eulerAngles.z);
             
             if (!Mathf.Approximately(input, 0f))
             { 
