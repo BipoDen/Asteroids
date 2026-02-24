@@ -14,6 +14,7 @@ namespace Assets._Asteroids.Logic.UI
     {
         [SerializeField] private TextMeshProUGUI _scoreText;
         [SerializeField] private TextMeshProUGUI _coordsText;
+        [SerializeField] private TextMeshProUGUI _speedText;
         [SerializeField] private TextMeshProUGUI _rotationText;
         [SerializeField] private TextMeshProUGUI _secondaryCountText;
         [SerializeField] private Slider _laserCooldown;
@@ -42,7 +43,7 @@ namespace Assets._Asteroids.Logic.UI
             _scoreService.OnScoreChanged += ChangeScore;
             _secondaryWeapon.OnCountChanged += ChangeSecondaryCount;
             _secondaryWeapon.OnReloadTimeChanged += ChangeSecondaryCooldown;
-            _player.OnMove += ChangePlayerCoordinates;
+            _player.OnMove += ChangePlayerCoords;
             _player.OnRotate += ChangePlayerRotation;
         }
 
@@ -61,14 +62,15 @@ namespace Assets._Asteroids.Logic.UI
             _laserCooldown.value = curretCooldown / cooldown;
         }
 
-        private void ChangePlayerCoordinates(Vector2 coords)
+        private void ChangePlayerCoords(Vector2 coords, float speed)
         {
             _coordsText.text = $"{coords.x:F2}, {coords.y:F2}";
+            _speedText.text = $"Speed: {speed:F2}";
         }
 
         private void ChangePlayerRotation(float zAngle)
         {
-            _rotationText.text = $"{zAngle:F2}";
+            _rotationText.text = $"{zAngle:F0}";
         }
 
         private void ShowGameOverPanel()

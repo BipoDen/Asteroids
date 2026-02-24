@@ -19,12 +19,12 @@ namespace Assets._Asteroids.Logic.Input
 
         public bool isShootingPrimary()
         {
-            return UnityEngine.Input.GetKey(KeyCode.Mouse0);
+            return UnityEngine.Input.GetMouseButton(0);
         }
 
         public bool isShootingSecondary()
         {
-            return UnityEngine.Input.GetKey(KeyCode.Mouse1);
+            return UnityEngine.Input.GetMouseButton(1);
         }
     }
 }
