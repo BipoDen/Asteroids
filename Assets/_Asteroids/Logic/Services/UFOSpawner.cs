@@ -23,11 +23,7 @@ namespace Assets._Asteroids.Logic.Services
             _player = player;
             _gameState = gameState;
         }
-
-        public void Initialize()
-        {
-            
-        }
+        
         public void Tick()
         {
             if(_gameState.IsGamePaused)

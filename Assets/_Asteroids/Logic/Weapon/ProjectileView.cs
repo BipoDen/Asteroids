@@ -17,7 +17,6 @@ namespace Assets._Asteroids.Logic.Weapon
         private void OnEnable()
         {
             _cts = new CancellationTokenSource();
-            Lifetime(_cts.Token).Forget();
         }
 
         private void OnDisable()
@@ -28,11 +27,12 @@ namespace Assets._Asteroids.Logic.Weapon
 
         public void Init(Transform startPosition, float lifeTime, float speed)
         {
-            OnDied = null;
             transform.position = startPosition.position;
             transform.rotation = startPosition.rotation;
             _lifeTime = lifeTime;
             _speed = speed;
+            
+            Lifetime(_cts.Token).Forget();
         }
         
         private void FixedUpdate()

@@ -40,12 +40,12 @@ namespace Assets._Asteroids.Logic.Weapon
             
             CreateBullet(_startPosition);    
             
-            Reload(_delay);
+            Reload(_delay).Forget();
         }
         
         private async UniTask Reload(float delay)
         {
-            await UniTask.Delay(TimeSpan.FromSeconds(delay));
+            await UniTask.Delay(TimeSpan.FromSeconds(delay),  DelayType.UnscaledDeltaTime);
             _isReloading = false;
         }
 

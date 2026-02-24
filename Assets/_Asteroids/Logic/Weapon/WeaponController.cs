@@ -30,7 +30,7 @@ namespace Assets._Asteroids.Logic.Weapon
             }
         }
         
-        private void FixedUpdate()
+        private void Update()
         {
             if(_gameState.IsGamePaused)
                 return;

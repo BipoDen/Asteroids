@@ -22,11 +22,6 @@ namespace Assets._Asteroids.Logic.Services
             _factory = factory;
             _gameState = gameState;
         }
-
-        public void Initialize()
-        {
-            SpawnAsteroid();
-        }
         
         public void Tick()
         {
