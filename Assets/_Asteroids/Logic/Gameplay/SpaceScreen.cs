@@ -13,10 +13,15 @@ namespace Assets._Asteroids.Logic.Gameplay
         private float _width;
         private float _height;
 
-        public SpaceScreen(Vector2 upLeftBorder, Vector2 downRightBorder)
+        public SpaceScreen(Camera camera)
         {
-            UpLeftBorder = upLeftBorder;
-            DownRightBorder = downRightBorder;
+            float cameraHeight = camera.orthographicSize;
+            float cameraWidth = cameraHeight * camera.aspect;
+            
+            Vector3 camPos = camera.transform.position;
+            
+            UpLeftBorder = new Vector2(camPos.x - cameraWidth, camPos.y + cameraHeight);
+            DownRightBorder = new Vector2(camPos.x + cameraWidth, camPos.y - cameraHeight);
             
             _width = DownRightBorder.x - UpLeftBorder.x;
             _height = UpLeftBorder.y - DownRightBorder.y;

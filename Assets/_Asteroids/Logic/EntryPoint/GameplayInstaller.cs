@@ -39,7 +39,7 @@ namespace Assets._Asteroids.Logic.EntryPoint
         private void BindInput()
         {
             Container.BindInterfacesAndSelfTo<DesktopInput>().AsSingle();
-            Container.Bind<SpaceScreen>().FromNew().AsSingle().WithArguments(_upLeftBorder, _downRightBorder);
+            Container.Bind<SpaceScreen>().FromNew().AsSingle().WithArguments(Camera.main);
         }
 
         private void BindServices()
