@@ -1,4 +1,5 @@
 using System;
+using System.Threading;
 using Assets._Asteroids.Logic.Factory;
 using UnityEngine;
 using Zenject;
@@ -21,6 +22,8 @@ namespace Assets._Asteroids.Logic.Weapon
         private float _laserCooldown = 5f;
         private bool _isLaserActive = false;
         private bool _isLaserReloading = false;
+
+        private CancellationTokenSource _cts;
         
         public event Action<int> OnCountChanged;
         public event Action<float, float> OnReloadTimeChanged;
@@ -37,9 +40,28 @@ namespace Assets._Asteroids.Logic.Weapon
             _laserView = Object.Instantiate(_laserPrefab, _startPosition);
             _laserView.Init(_startPosition, _laserDistance);
             _laserView.gameObject.SetActive(false);
-            LaserCount = MaxLaserCount;
+            
+            ResetWeapon();
         }
-        
+
+        public void ResetWeapon()
+        {
+            _cts?.Cancel();
+            _cts?.Dispose();
+            
+            _cts = new CancellationTokenSource();
+            
+            _isLaserActive = false;
+            _isLaserReloading = false;
+
+            LaserCount = MaxLaserCount;
+            OnCountChanged?.Invoke(LaserCount);
+            OnReloadTimeChanged?.Invoke(0f, _laserCooldown);
+
+            if (_laserView != null)
+                _laserView.gameObject.SetActive(false);
+        }
+
         public void HandleFire()
         {
             if(LaserCount <= 0 || _isLaserActive)
@@ -53,38 +75,61 @@ namespace Assets._Asteroids.Logic.Weapon
             _isLaserActive = true;
             LaserCount--;
             OnCountChanged?.Invoke(LaserCount);
-            LaserDuration();
+            
+            LaserDuration(_cts.Token).Forget();
+            
             if (!_isLaserReloading)
             {
-                LaserReload();
+                LaserReload(_cts.Token).Forget();
             }
         }
 
-        private async UniTask LaserDuration()
+        private async UniTask LaserDuration(CancellationToken token)
         {
-            _laserView.gameObject.SetActive(true);
-            await UniTask.Delay(TimeSpan.FromSeconds(_laserDuration));
-            _laserView.gameObject.SetActive(false);
-            _isLaserActive = false;
+            try
+            {
+                _laserView.gameObject.SetActive(true);
+                await UniTask.Delay(TimeSpan.FromSeconds(_laserDuration), cancellationToken: token);
+            }
+            catch (OperationCanceledException) { }
+            finally
+            {
+                if (_laserView != null)
+                    _laserView.gameObject.SetActive(false);
+
+                _isLaserActive = false;
+            }
         }
 
-        private async UniTask LaserReload()
+        private async UniTask LaserReload(CancellationToken token)
         {
             _isLaserReloading = true;
-            while (LaserCount < MaxLaserCount)
-            {
-                float endTime = Time.time + _laserCooldown;
 
-                while (Time.time < endTime)
+            try
+            {
+                while (LaserCount < MaxLaserCount)
                 {
-                    float timeLeft = endTime - Time.time;
-                    OnReloadTimeChanged?.Invoke(timeLeft, _laserCooldown);
-                    await UniTask.Yield();
+                    float endTime = Time.time + _laserCooldown;
+
+                    while (Time.time < endTime)
+                    {
+                        token.ThrowIfCancellationRequested();
+
+                        float timeLeft = endTime - Time.time;
+                        OnReloadTimeChanged?.Invoke(timeLeft, _laserCooldown);
+
+                        await UniTask.Yield(PlayerLoopTiming.Update, token);
+                    }
+
+                    LaserCount++;
+                    OnCountChanged?.Invoke(LaserCount);
                 }
-                LaserCount++;
-                OnCountChanged?.Invoke(LaserCount);
             }
-            _isLaserReloading = false;
+            catch (OperationCanceledException) { }
+            finally
+            {
+                _isLaserReloading = false;
+            }
         }
     }
 }

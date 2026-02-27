@@ -30,7 +30,12 @@ namespace Assets._Asteroids.Logic.Weapon
         {
             _startPosition = launchOffset;
         }
-        
+
+        public void ResetWeapon()
+        {
+            
+        }
+
         public void HandleFire()
         {
             if(_isReloading)
