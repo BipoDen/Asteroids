@@ -30,8 +30,8 @@ namespace Assets._Asteroids.Logic.Services
 
         private void GameOver()
         {
-            OnGameOver?.Invoke();
             IsGamePaused = true;
+            OnGameOver?.Invoke();
         }
 
         public void RestartGame()

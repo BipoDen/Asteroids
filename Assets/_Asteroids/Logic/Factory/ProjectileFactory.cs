@@ -17,7 +17,6 @@ namespace Assets._Asteroids.Logic.Factory
         public ProjectileView Create(Transform startPosition, float lifeTime, float speed)
         {
             var projectile = _pool.Spawn();
-            Debug.Log("Spawning projectile");
             projectile.OnDied += Despawn;
             projectile.Init(startPosition,  lifeTime, speed);
             
