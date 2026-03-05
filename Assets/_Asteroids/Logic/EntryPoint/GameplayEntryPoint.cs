@@ -4,13 +4,13 @@ using Zenject;
 
 namespace Assets._Asteroids.Logic.EntryPoint
 {
-    public class GameEntryPoint : IInitializable
+    public class GameplayEntryPoint : IInitializable
     {
         private SpaceshipController _player;
         private ScoreService _scoreService;
         private GameState _gameState;
 
-        public GameEntryPoint( 
+        public GameplayEntryPoint( 
             ScoreService scoreService, 
             GameState gameState,
             SpaceshipController player)

@@ -838,4 +838,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scoreText: {fileID: 6020381185459801028}
+  _maxScoreText: {fileID: 5260277546137471029}
   _restartButton: {fileID: 749268030342117446}

@@ -10,6 +10,7 @@ namespace Assets._Asteroids.Logic.UI
         
         private ScoreService _scoreService;
         private GameState _gameState;
+        private ISaveService _saveService;
         
         public GameOverPresenter(GameOverView view)
         {
@@ -17,10 +18,11 @@ namespace Assets._Asteroids.Logic.UI
         }
         
         [Inject]
-        public void Construct(ScoreService scoreService, GameState gameState)
+        public void Construct(ScoreService scoreService, GameState gameState, ISaveService saveService)
         {
             _scoreService = scoreService;
             _gameState = gameState;
+            _saveService = saveService;
             
             _gameState.OnGameOver += Show;
             _view.OnRestart.AddListener(Restart);
@@ -31,6 +33,7 @@ namespace Assets._Asteroids.Logic.UI
         private void Show()
         {
             _view.gameObject.SetActive(true);
+            _view.SetMaxScore(_saveService.Data.MaxScore, _scoreService.Score);
             _view.ShowScore(_scoreService.Score);
         }
 

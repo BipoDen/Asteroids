@@ -30,7 +30,7 @@ namespace Assets._Asteroids.Logic.EntryPoint
             BindPlayer();
             BindEnemies();
             BindUI();
-            Container.BindInterfacesTo<GameEntryPoint>().AsSingle();
+            Container.BindInterfacesTo<GameplayEntryPoint>().AsSingle();
         }
 
         private void BindInput()

@@ -5,12 +5,16 @@ namespace Assets._Asteroids.Logic.Services
     public class ScoreService : IDisposable
     {
         public int Score { get; private set; }
-        public event Action<int> OnScoreChanged;
-        private GameState _gameState;
 
-        public ScoreService(GameState gameState)
+        private GameState _gameState;
+        private ISaveService _saveService;
+        
+        public event Action<int> OnScoreChanged;
+
+        public ScoreService(GameState gameState, ISaveService saveService)
         {
             _gameState = gameState;
+            _saveService = saveService;
         }
 
         public void Initialize()
@@ -22,6 +26,11 @@ namespace Assets._Asteroids.Logic.Services
         public void AddScore(int score)
         {
             Score += score;
+            if (Score > _saveService.Data.MaxScore)
+            {
+                _saveService.Data.MaxScore = Score;
+                _saveService.Save();
+            }
             OnScoreChanged?.Invoke(Score);
         }
 
