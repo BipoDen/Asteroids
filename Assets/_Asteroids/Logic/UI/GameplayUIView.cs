@@ -20,8 +20,6 @@ namespace Assets._Asteroids.Logic.UI
         [SerializeField] private TextMeshProUGUI _rotationText;
         [SerializeField] private TextMeshProUGUI _secondaryCountText;
         [SerializeField] private Slider _laserCooldown;
-        [FormerlySerializedAs("_gameOverPanel")] [SerializeField] private GameOverView gameOverView;
-        
 
         public void ChangeScore(int score)
         {

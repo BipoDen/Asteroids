@@ -1,9 +1,5 @@
 using System;
-using Assets._Asteroids.Logic.Gameplay;
-using Assets._Asteroids.Logic.Weapon;
-using Unity.VisualScripting;
 using UnityEngine;
-using Zenject;
 
 namespace Assets._Asteroids.Logic.Entities.Enemies
 {

@@ -8,11 +8,11 @@ namespace Assets._Asteroids.Logic.Factory
 {
     public class UFOFactory
     {
-        private UFOPool _pool;
+        private EnemyPool<UFOEnemy> _pool;
         private SpaceScreen _spaceScreen;
         private EnemyRepository _repository;
 
-        public UFOFactory(UFOPool pool, SpaceScreen spaceScreen, EnemyRepository repository)
+        public UFOFactory(EnemyPool<UFOEnemy> pool, SpaceScreen spaceScreen, EnemyRepository repository)
         {
             _pool = pool;
             _spaceScreen = spaceScreen;

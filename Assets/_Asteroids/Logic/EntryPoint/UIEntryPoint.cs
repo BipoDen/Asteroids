@@ -13,8 +13,6 @@ namespace Assets._Asteroids.Logic.EntryPoint
         private GameState _gameState;
         private SpaceshipController _player;
         private IWeapon _secondaryWeapon;
-        
-        
 
         public UIEntryPoint(ScoreService scoreService,
             GameState gameState,

@@ -1,7 +1,5 @@
 using System;
-using Assets._Asteroids.Logic.Gameplay;
 using UnityEngine;
-using Zenject;
 
 namespace Assets._Asteroids.Logic.Entities.Enemies
 {

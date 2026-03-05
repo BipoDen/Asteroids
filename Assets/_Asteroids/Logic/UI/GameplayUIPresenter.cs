@@ -11,34 +11,20 @@ namespace Assets._Asteroids.Logic.UI
 {
     public class GameplayUIPresenter : IDisposable
     {
-        private SpaceshipController _player;
-        private ScoreService _scoreService;
-        private GameState _gameState;
-        private IWeapon _secondaryWeapon;
-
         private GameplayUIView _view;
+        private GameplayUIModel _model;
         
-        public GameplayUIPresenter(GameplayUIView view)
+        
+        public GameplayUIPresenter(GameplayUIView view, GameplayUIModel model)
         {
             _view = view;
-        }
-        
-        [Inject]
-        public void Construct(SpaceshipController player, 
-            GameState gameState, 
-            ScoreService scoreService, 
-            [Inject(Id = GameplayConstants.SECONDARY_WEAPON_TAG)]IWeapon secondaryWeapon)
-        {
-            _player = player;
-            _scoreService = scoreService;
-            _gameState = gameState;
-            _secondaryWeapon = secondaryWeapon;
+            _model = model;
             
-            _player.OnMove += OnMove;
-            _player.OnRotate += OnRotate;
-            _scoreService.OnScoreChanged += OnScoreChanged;
-            _secondaryWeapon.OnCountChanged += WeaponOnOnCountChanged;
-            _secondaryWeapon.OnReloadTimeChanged += WeaponOnOnReloadTimeChanged;
+            _model.OnPlayerMoved += OnMove;
+            _model.OnPlayerRotated += OnRotate;
+            _model.OnScoreChanged += OnScoreChanged;
+            _model.OnSecondaryCountChanged += WeaponOnOnCountChanged;
+            _model.OnSecondaryCooldownChanged += WeaponOnOnReloadTimeChanged;
         }
 
         private void OnRotate(float rotate)
@@ -68,10 +54,11 @@ namespace Assets._Asteroids.Logic.UI
 
         public void Dispose()
         {
-            _player.OnMove -= OnMove;
-            _scoreService.OnScoreChanged -= OnScoreChanged;
-            _secondaryWeapon.OnCountChanged -= WeaponOnOnCountChanged;
-            _secondaryWeapon.OnReloadTimeChanged -= WeaponOnOnReloadTimeChanged;
+            _model.OnPlayerMoved -= OnMove;
+            _model.OnPlayerRotated -= OnRotate;
+            _model.OnScoreChanged -= OnScoreChanged;
+            _model.OnSecondaryCountChanged -= WeaponOnOnCountChanged;
+            _model.OnSecondaryCooldownChanged -= WeaponOnOnReloadTimeChanged;
         }
     }
 }

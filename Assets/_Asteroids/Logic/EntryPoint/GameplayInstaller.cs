@@ -15,9 +15,6 @@ namespace Assets._Asteroids.Logic.EntryPoint
     public class GameplayInstaller : MonoInstaller
     {
         [SerializeField] private Canvas _canvas;
-        
-        [SerializeField] private Vector2 _upLeftBorder;
-        [SerializeField] private Vector2 _downRightBorder;
         [SerializeField] private SpaceshipController _playerShip;
         [SerializeField] private Transform _playerStartPosition;
         [SerializeField] private ProjectileView _projectilePrefab;
@@ -33,7 +30,7 @@ namespace Assets._Asteroids.Logic.EntryPoint
             BindPlayer();
             BindEnemies();
             BindUI();
-            Container.BindInterfacesAndSelfTo<GameEntryPoint>().AsSingle();
+            Container.BindInterfacesTo<GameEntryPoint>().AsSingle();
         }
 
         private void BindInput()
@@ -71,7 +68,7 @@ namespace Assets._Asteroids.Logic.EntryPoint
         {
             Container.Bind<EnemyRepository>().FromNew().AsSingle();
             
-            Container.BindMemoryPool<AsteroidEnemy, AsteroidsPool>()
+            Container.BindMemoryPool<AsteroidEnemy, EnemyPool<AsteroidEnemy>>()
                 .WithInitialSize(20)
                 .FromComponentInNewPrefab(_asteroidPrefab)
                 .UnderTransformGroup("Asteroids");
@@ -79,10 +76,11 @@ namespace Assets._Asteroids.Logic.EntryPoint
             Container.Bind<AsteroidFactory>().FromNew().AsSingle();
             Container.BindInterfacesAndSelfTo<AsteroidSpawner>().FromNew().AsSingle();
 
-            Container.BindMemoryPool<UFOEnemy, UFOPool>()
+            Container.BindMemoryPool<UFOEnemy, EnemyPool<UFOEnemy>>()
                 .WithInitialSize(10)
                 .FromComponentInNewPrefab(_ufoPrefab)
                 .UnderTransformGroup("UFOs");
+            
             Container.Bind<UFOFactory>().FromNew().AsSingle();
             Container.BindInterfacesAndSelfTo<UFOSpawner>().FromNew().AsSingle();
         }
@@ -90,9 +88,9 @@ namespace Assets._Asteroids.Logic.EntryPoint
         private void BindUI()
         {
             GameplayUIView uiView = Container.InstantiatePrefabForComponent<GameplayUIView>(_gameplayView, _canvas.transform);
-            GameplayUIPresenter gameplayPresenter = new GameplayUIPresenter(uiView);
-            Container.QueueForInject(gameplayPresenter);
-            Container.BindInterfacesAndSelfTo<GameplayUIPresenter>().FromInstance(gameplayPresenter).AsSingle();
+            Container.Bind<GameplayUIView>().FromInstance(uiView);
+            Container.Bind<GameplayUIModel>().FromNew().AsSingle();
+            Container.BindInterfacesAndSelfTo<GameplayUIPresenter>().AsSingle();
             
             GameOverView uiGameOverView = Container.InstantiatePrefabForComponent<GameOverView>(_gameOverView, _canvas.transform);
             GameOverPresenter gameOverPresenter = new GameOverPresenter(uiGameOverView);

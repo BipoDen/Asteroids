@@ -9,12 +9,12 @@ namespace Assets._Asteroids.Logic.Factory
 {
     public class AsteroidFactory
     {
-        private AsteroidsPool _pool;
+        private EnemyPool<AsteroidEnemy> _pool;
         private SpaceScreen _spaceScreen;
         private EnemyRepository _repository;
         private GameState _gameState;
 
-        public AsteroidFactory(AsteroidsPool pool, SpaceScreen spaceScreen, EnemyRepository repository, GameState gameState)
+        public AsteroidFactory(EnemyPool<AsteroidEnemy> pool, SpaceScreen spaceScreen, EnemyRepository repository, GameState gameState)
         {
             _pool = pool;
             _spaceScreen = spaceScreen;
