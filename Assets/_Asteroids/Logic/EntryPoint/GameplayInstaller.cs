@@ -93,9 +93,8 @@ namespace Assets._Asteroids.Logic.EntryPoint
             Container.BindInterfacesAndSelfTo<GameplayUIPresenter>().AsSingle();
             
             GameOverView uiGameOverView = Container.InstantiatePrefabForComponent<GameOverView>(_gameOverView, _canvas.transform);
-            GameOverPresenter gameOverPresenter = new GameOverPresenter(uiGameOverView);
-            Container.QueueForInject(gameOverPresenter);
-            Container.BindInterfacesAndSelfTo<GameOverPresenter>().FromInstance(gameOverPresenter).AsSingle();
+            Container.Bind<GameOverView>().FromInstance(uiGameOverView);
+            Container.BindInterfacesAndSelfTo<GameOverPresenter>().AsSingle();
         }
     }
 }

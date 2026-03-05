@@ -12,14 +12,10 @@ namespace Assets._Asteroids.Logic.UI
         private GameState _gameState;
         private ISaveService _saveService;
         
-        public GameOverPresenter(GameOverView view)
+        public GameOverPresenter(GameOverView view, ScoreService scoreService, GameState gameState, ISaveService saveService)
         {
             _view = view;
-        }
-        
-        [Inject]
-        public void Construct(ScoreService scoreService, GameState gameState, ISaveService saveService)
-        {
+            
             _scoreService = scoreService;
             _gameState = gameState;
             _saveService = saveService;
