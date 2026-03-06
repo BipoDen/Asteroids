@@ -7,29 +7,30 @@ namespace Assets._Asteroids.Logic.Services
     public class SaveService : ISaveService
     {
         private const string SAVE_KEY = "PLAYER_DATA";
-        public SaveData Data { get; private set; }
 
         public SaveService()
         {
             Load();
         }
         
-        public void Save()
+        public void Save(SaveData data)
         {
-            var json = JsonConvert.SerializeObject(Data);
+            var json = JsonConvert.SerializeObject(data);
             
             PlayerPrefs.SetString(SAVE_KEY, json);
         }
 
-        public void Load()
+        public SaveData Load()
         {
             var json = PlayerPrefs.GetString(SAVE_KEY);
             
-            Data = string.IsNullOrEmpty(json) 
+            var data = string.IsNullOrEmpty(json) 
                 ? new SaveData()
                 : JsonConvert.DeserializeObject<SaveData>(json);
             
-            Save();
+            Save(data);
+
+            return data;
         }
     }
 }

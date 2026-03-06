@@ -4,8 +4,7 @@ namespace Assets._Asteroids.Logic.Services
 {
     public interface ISaveService
     {
-        SaveData Data { get; }
-        void Save();
-        void Load();
+        void Save(SaveData data);
+        SaveData Load();
     }
 }

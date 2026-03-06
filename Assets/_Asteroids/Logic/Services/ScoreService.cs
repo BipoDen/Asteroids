@@ -1,4 +1,5 @@
 using System;
+using Assets._Asteroids.Logic.Gameplay;
 
 namespace Assets._Asteroids.Logic.Services
 {
@@ -8,13 +9,15 @@ namespace Assets._Asteroids.Logic.Services
 
         private GameState _gameState;
         private ISaveService _saveService;
+        private SaveData _saveData;
         
         public event Action<int> OnScoreChanged;
 
-        public ScoreService(GameState gameState, ISaveService saveService)
+        public ScoreService(GameState gameState, ISaveService saveService, SaveData saveData)
         {
             _gameState = gameState;
             _saveService = saveService;
+            _saveData = saveData;
         }
 
         public void Initialize()
@@ -26,10 +29,10 @@ namespace Assets._Asteroids.Logic.Services
         public void AddScore(int score)
         {
             Score += score;
-            if (Score > _saveService.Data.MaxScore)
+            if (Score > _saveData.MaxScore)
             {
-                _saveService.Data.MaxScore = Score;
-                _saveService.Save();
+                _saveData.MaxScore = Score;
+                _saveService.Save(_saveData);
             }
             OnScoreChanged?.Invoke(Score);
         }

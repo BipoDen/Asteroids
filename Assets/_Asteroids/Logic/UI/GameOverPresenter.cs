@@ -1,4 +1,5 @@
 using System;
+using Assets._Asteroids.Logic.Gameplay;
 using Assets._Asteroids.Logic.Services;
 
 namespace Assets._Asteroids.Logic.UI
@@ -9,15 +10,15 @@ namespace Assets._Asteroids.Logic.UI
         
         private ScoreService _scoreService;
         private GameState _gameState;
-        private ISaveService _saveService;
+        private SaveData _saveData;
         
-        public GameOverPresenter(GameOverView view, ScoreService scoreService, GameState gameState, ISaveService saveService)
+        public GameOverPresenter(GameOverView view, ScoreService scoreService, GameState gameState, SaveData saveData)
         {
             _view = view;
             
             _scoreService = scoreService;
             _gameState = gameState;
-            _saveService = saveService;
+            _saveData = saveData;
             
             _gameState.OnGameOver += Show;
             _view.OnRestart.AddListener(Restart);
@@ -28,7 +29,7 @@ namespace Assets._Asteroids.Logic.UI
         private void Show()
         {
             _view.gameObject.SetActive(true);
-            _view.SetMaxScore(_saveService.Data.MaxScore, _scoreService.Score);
+            _view.SetMaxScore(_saveData.MaxScore, _scoreService.Score);
             _view.ShowScore(_scoreService.Score);
         }
 
