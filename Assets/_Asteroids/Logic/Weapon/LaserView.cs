@@ -1,4 +1,3 @@
-using System;
 using Assets._Asteroids.Logic.Entities.Enemies;
 using UnityEngine;
 

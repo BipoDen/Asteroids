@@ -3,7 +3,6 @@ using Assets._Asteroids.Logic.Factory;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
-using Object = UnityEngine.Object;
 
 
 namespace Assets._Asteroids.Logic.Weapon

@@ -1,7 +1,6 @@
 using Assets._Asteroids.Logic.Entities.Enemies;
 using Assets._Asteroids.Logic.Gameplay;
 using Assets._Asteroids.Logic.Repository;
-using Assets._Asteroids.Logic.Services;
 using UnityEngine;
 
 namespace Assets._Asteroids.Logic.Factory

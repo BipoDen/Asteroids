@@ -1,6 +1,5 @@
 using System;
 using System.Threading;
-using Assets._Asteroids.Logic.Factory;
 using UnityEngine;
 using Zenject;
 using Cysharp.Threading.Tasks;

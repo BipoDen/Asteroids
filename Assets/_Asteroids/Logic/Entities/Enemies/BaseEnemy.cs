@@ -1,4 +1,3 @@
-using System;
 using Assets._Asteroids.Logic.Gameplay;
 using Assets._Asteroids.Logic.Services;
 using Zenject;

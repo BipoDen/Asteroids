@@ -1,6 +1,5 @@
 using System;
 using Assets._Asteroids.Logic.Services;
-using Zenject;
 
 namespace Assets._Asteroids.Logic.UI
 {

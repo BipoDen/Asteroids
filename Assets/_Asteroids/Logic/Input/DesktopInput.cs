@@ -1,6 +1,4 @@
 
-using UnityEngine;
-
 namespace Assets._Asteroids.Logic.Input
 {
     public class DesktopInput : IInput

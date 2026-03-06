@@ -1,14 +1,6 @@
-using System;
-using Assets._Asteroids.Logic.Entities.Player;
-using Assets._Asteroids.Logic.Factory;
-using Assets._Asteroids.Logic.Gameplay;
-using Assets._Asteroids.Logic.Services;
-using Assets._Asteroids.Logic.Weapon;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
-using Zenject;
 
 namespace Assets._Asteroids.Logic.UI
 {

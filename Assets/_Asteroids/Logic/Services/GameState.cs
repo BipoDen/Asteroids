@@ -1,6 +1,5 @@
 using System;
 using Assets._Asteroids.Logic.Entities.Player;
-using UnityEngine;
 
 namespace Assets._Asteroids.Logic.Services
 {

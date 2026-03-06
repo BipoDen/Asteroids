@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Assets._Asteroids.Logic.Gameplay;
 using Assets._Asteroids.Logic.Input;
