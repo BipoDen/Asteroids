@@ -10,5 +10,6 @@ namespace Assets._Asteroids.Logic.Weapon
         public void HandleFire();
         public event Action<int> OnCountChanged;
         public event Action<float, float> OnReloadTimeChanged;
+        public event Action OnShoot;
     }
 }

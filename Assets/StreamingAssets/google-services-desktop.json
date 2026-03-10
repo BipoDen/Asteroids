@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "2829902157",
+    "project_id": "asteroids-analytics",
+    "storage_bucket": "asteroids-analytics.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:2829902157:android:2a12df14ec36bb94045704",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.AsteroidsGame"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDO8m_XR3p-r2oSxT0ooBKBEvegSbmpqO0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

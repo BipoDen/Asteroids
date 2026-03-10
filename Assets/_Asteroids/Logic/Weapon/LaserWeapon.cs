@@ -1,5 +1,6 @@
 using System;
 using System.Threading;
+using Assets._Asteroids.Logic.Analytics;
 using UnityEngine;
 using Zenject;
 using Cysharp.Threading.Tasks;
@@ -23,14 +24,17 @@ namespace Assets._Asteroids.Logic.Weapon
         private bool _isLaserReloading = false;
 
         private CancellationTokenSource _cts;
+        private IAnalyticsService _analyticsService;
         
         public event Action<int> OnCountChanged;
         public event Action<float, float> OnReloadTimeChanged;
-        
+        public event Action OnShoot;
+
         [Inject]
-        public void Construct(LaserView laserPrefab)
+        public void Construct(LaserView laserPrefab, IAnalyticsService analyticsService)
         {
             _laserPrefab = laserPrefab;
+            _analyticsService = analyticsService;
         }
         
         public void Init(Transform launchOffset)
@@ -73,6 +77,8 @@ namespace Assets._Asteroids.Logic.Weapon
         {
             _isLaserActive = true;
             LaserCount--;
+            _analyticsService.OnLaserUsingEvent();
+            OnShoot?.Invoke();
             OnCountChanged?.Invoke(LaserCount);
             
             LaserDuration(_cts.Token).Forget();

@@ -1,5 +1,6 @@
 using Assets._Asteroids.Logic.Entities.Enemies;
 using Assets._Asteroids.Logic.Entities.Player;
+using Assets._Asteroids.Logic.EntryPoint;
 using Assets._Asteroids.Logic.Factory;
 using Assets._Asteroids.Logic.Gameplay;
 using Assets._Asteroids.Logic.Input;
@@ -7,10 +8,10 @@ using Assets._Asteroids.Logic.Repository;
 using Assets._Asteroids.Logic.Services;
 using Assets._Asteroids.Logic.UI;
 using Assets._Asteroids.Logic.Weapon;
-using Zenject;
 using UnityEngine;
+using Zenject;
 
-namespace Assets._Asteroids.Logic.EntryPoint
+namespace Assets._Asteroids.Logic.Installers
 {
     public class GameplayInstaller : MonoInstaller
     {
@@ -41,6 +42,7 @@ namespace Assets._Asteroids.Logic.EntryPoint
 
         private void BindServices()
         {
+            Container.Bind<StatsService>().FromNew().AsSingle();
             Container.Bind<GameState>().FromNew().AsSingle();
             Container.Bind<ScoreService>().FromNew().AsSingle();
         }

@@ -1,13 +1,12 @@
-using System;
 using Assets._Asteroids.Logic.Gameplay;
-using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
 
 namespace Assets._Asteroids.Logic.EntryPoint
 {
-    public class BootstrapEntryPoint : MonoBehaviour
+    public class BootstrapEntryPoint : IInitializable
     {
-        private void Start()
+        public void Initialize()
         {
             SceneManager.LoadScene(GameplayConstants.GAMEPLEY_SCENE_NAME);
         }

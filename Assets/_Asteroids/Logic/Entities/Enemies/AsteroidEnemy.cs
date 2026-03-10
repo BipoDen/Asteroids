@@ -1,5 +1,7 @@
 using System;
+using Assets._Asteroids.Logic.Services;
 using UnityEngine;
+using Zenject;
 
 namespace Assets._Asteroids.Logic.Entities.Enemies
 {
@@ -12,6 +14,8 @@ namespace Assets._Asteroids.Logic.Entities.Enemies
         
         public event Action OnDied;
         private Rigidbody2D _rigidbody;
+        
+        private StatsService _statsService;
 
         private void Awake()
         {
@@ -27,6 +31,12 @@ namespace Assets._Asteroids.Logic.Entities.Enemies
             _direction = direction;
             _score = score;
         }
+        
+        [Inject]
+        public void Construct(StatsService statsService)
+        {
+            _statsService = statsService;
+        }
 
         protected override void TryMove()
         {
@@ -36,6 +46,7 @@ namespace Assets._Asteroids.Logic.Entities.Enemies
         public override void TakeDamage()
         {
             AddScore(_score);
+            _statsService.AddAsteroidKill();
             Die();
         }
 
