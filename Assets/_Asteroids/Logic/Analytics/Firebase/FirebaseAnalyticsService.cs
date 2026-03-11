@@ -24,7 +24,7 @@ namespace Assets._Asteroids.Logic.Analytics.Firebase
         public void OnLaserUsingEvent()
         {
             Debug.Log("FirebaseLaserUsingEvent");
-            FirebaseAnalytics.LogEvent(AnalyticsConstants.GAME_COMPLETED, new Parameter("Laser", "UsingLaser"));
+            FirebaseAnalytics.LogEvent(AnalyticsConstants.LASER_USED, new Parameter("Laser", "UsingLaser"));
         }
     }
 }
