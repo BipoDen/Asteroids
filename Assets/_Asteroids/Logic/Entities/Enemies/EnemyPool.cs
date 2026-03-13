@@ -1,24 +1,57 @@
+using System;
+using System.Collections.Generic;
+using UnityEngine;
 using Zenject;
+using Object = UnityEngine.Object;
 
 namespace Assets._Asteroids.Logic.Entities.Enemies
 {
-    public class EnemyPool<T> : MemoryPool<T> where T : BaseEnemy
+    public class EnemyPool<T> : IDisposable where T : BaseEnemy
     {
-        protected override void OnCreated(T item)
+        private readonly Stack<T> _pool = new();
+        private readonly Transform _container;
+        private readonly DiContainer _diContainer;
+        private GameObject _prefab;
+
+        public EnemyPool(DiContainer diContainer, string groupName)
         {
-            base.OnCreated(item);
-            item.gameObject.SetActive(false);
+            _diContainer = diContainer;
+            _container = new GameObject(groupName).transform;
+        }
+        
+        public void Initialize(GameObject prefab, int initialSize)
+        {
+            _prefab = prefab;
+            Debug.Log(_container);
+            for (int i = 0; i < initialSize; i++)
+            {
+                var enemy = CreateNew();
+                enemy.gameObject.SetActive(false);
+                _pool.Push(enemy);
+            }
         }
 
-        protected override void OnSpawned(T item)
+        public T Spawn()
         {
-            item.gameObject.SetActive(true);
+            var enemy = _pool.Count > 0 ? _pool.Pop() : CreateNew();
+            enemy.gameObject.SetActive(true);
+            return enemy;
         }
 
-        protected override void OnDespawned(T item)
+        public void Despawn(T enemy)
         {
-            base.OnDespawned(item);
-            item.gameObject.SetActive(false);
+            enemy.gameObject.SetActive(false);
+            _pool.Push(enemy);
+        }
+
+        private T CreateNew()
+        {
+            return _diContainer.InstantiatePrefabForComponent<T>(_prefab, _container);
+        }
+
+        public void Dispose()
+        {
+            Object.Destroy(_container.gameObject);
         }
     }
 }

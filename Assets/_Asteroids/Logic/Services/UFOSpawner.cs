@@ -16,6 +16,7 @@ namespace Assets._Asteroids.Logic.Services
         private SpaceshipController _player;
         private UFOFactory _factory;
         private GameState _gameState;
+        private bool _isReady;
 
         public UFOSpawner(UFOFactory factory, SpaceshipController player, GameState gameState)
         {
@@ -23,10 +24,15 @@ namespace Assets._Asteroids.Logic.Services
             _player = player;
             _gameState = gameState;
         }
+
+        public void StartWork()
+        {
+            _isReady = true;
+        }
         
         public void Tick()
         {
-            if(_gameState.IsGamePaused)
+            if(_gameState.IsGamePaused || !_isReady)
                 return;
 
             if (!_isSpawning)

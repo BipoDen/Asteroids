@@ -1,4 +1,4 @@
-namespace Assets._Asteroids.Logic.Analytics
+namespace Assets._Asteroids.Logic.Constants
 {
     public static class AnalyticsConstants
     {

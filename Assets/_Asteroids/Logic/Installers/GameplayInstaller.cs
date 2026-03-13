@@ -1,3 +1,5 @@
+using Assets._Asteroids.Logic.Addressable;
+using Assets._Asteroids.Logic.Constants;
 using Assets._Asteroids.Logic.Entities.Enemies;
 using Assets._Asteroids.Logic.Entities.Player;
 using Assets._Asteroids.Logic.EntryPoint;
@@ -20,8 +22,6 @@ namespace Assets._Asteroids.Logic.Installers
         [SerializeField] private Transform _playerStartPosition;
         [SerializeField] private ProjectileView _projectilePrefab;
         [SerializeField] private LaserView _laserPrefab;
-        [SerializeField] private AsteroidEnemy _asteroidPrefab;
-        [SerializeField] private UFOEnemy _ufoPrefab;
         [SerializeField] private GameplayUIView _gameplayView;
         [SerializeField] private GameOverView _gameOverView;
         public override void InstallBindings()
@@ -70,18 +70,16 @@ namespace Assets._Asteroids.Logic.Installers
         {
             Container.Bind<EnemyRepository>().FromNew().AsSingle();
             
-            Container.BindMemoryPool<AsteroidEnemy, EnemyPool<AsteroidEnemy>>()
-                .WithInitialSize(20)
-                .FromComponentInNewPrefab(_asteroidPrefab)
-                .UnderTransformGroup("Asteroids");
+            Container.Bind<EnemyPool<AsteroidEnemy>>()
+                .AsSingle() 
+                .WithArguments("Asteroids");
             
             Container.Bind<AsteroidFactory>().FromNew().AsSingle();
             Container.BindInterfacesAndSelfTo<AsteroidSpawner>().FromNew().AsSingle();
 
-            Container.BindMemoryPool<UFOEnemy, EnemyPool<UFOEnemy>>()
-                .WithInitialSize(10)
-                .FromComponentInNewPrefab(_ufoPrefab)
-                .UnderTransformGroup("UFOs");
+            Container.Bind<EnemyPool<UFOEnemy>>()
+                .AsSingle() 
+                .WithArguments("UFOs");
             
             Container.Bind<UFOFactory>().FromNew().AsSingle();
             Container.BindInterfacesAndSelfTo<UFOSpawner>().FromNew().AsSingle();

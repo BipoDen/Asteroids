@@ -1,4 +1,4 @@
-namespace Assets._Asteroids.Logic.Gameplay
+namespace Assets._Asteroids.Logic.Constants
 {
     public static class GameplayConstants
     {
