@@ -12,17 +12,19 @@ namespace Assets._Asteroids.Logic.UI
         private GameState _gameState;
         private SaveData _saveData;
         
-        public GameOverPresenter(GameOverView view, ScoreService scoreService, GameState gameState, SaveData saveData)
+        public GameOverPresenter(ScoreService scoreService, GameState gameState, SaveData saveData)
         {
-            _view = view;
-            
             _scoreService = scoreService;
             _gameState = gameState;
             _saveData = saveData;
-            
-            _gameState.OnGameOver += Show;
+        }
+
+        public void Initialize(GameOverView view)
+        {
+            _view = view;
             _view.OnRestart.AddListener(Restart);
             
+            _gameState.OnGameOver += Show;
             Hide();
         }
 

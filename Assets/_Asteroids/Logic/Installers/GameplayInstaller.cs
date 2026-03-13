@@ -20,8 +20,6 @@ namespace Assets._Asteroids.Logic.Installers
         [SerializeField] private Canvas _canvas;
         [SerializeField] private Transform _playerStartPosition;
         [SerializeField] private LaserView _laserPrefab;
-        [SerializeField] private GameplayUIView _gameplayView;
-        [SerializeField] private GameOverView _gameOverView;
         public override void InstallBindings()
         {
             BindInput();
@@ -87,8 +85,6 @@ namespace Assets._Asteroids.Logic.Installers
             Container.Bind<GameplayUIModel>().FromNew().AsSingle();
             Container.BindInterfacesAndSelfTo<GameplayUIPresenter>().AsSingle();
             
-            GameOverView uiGameOverView = Container.InstantiatePrefabForComponent<GameOverView>(_gameOverView, _canvas.transform);
-            Container.Bind<GameOverView>().FromInstance(uiGameOverView);
             Container.BindInterfacesAndSelfTo<GameOverPresenter>().AsSingle();
         }
     }
