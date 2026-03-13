@@ -1,3 +1,4 @@
+using Assets._Asteroids.Logic.Addressable;
 using Assets._Asteroids.Logic.Analytics;
 using Assets._Asteroids.Logic.Analytics.Firebase;
 using Assets._Asteroids.Logic.Gameplay;
@@ -17,6 +18,8 @@ namespace Assets._Asteroids.Logic.Installers
             
             Container.BindInterfacesTo<FirebaseInitializer>().FromNew().AsSingle();
             Container.Bind<IAnalyticsService>().To<FirebaseAnalyticsService>().AsSingle();
+            Container.BindInterfacesAndSelfTo<BaseAssetLoader>().AsSingle();
+
         }
     }
 }

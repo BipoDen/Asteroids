@@ -12,20 +12,27 @@ namespace Assets._Asteroids.Logic.Services
         private int _fragmentCount = 3;
         private int _scorePerKill = 100;
         private bool _isSpawning;
+        private bool isReadyToSpawn;
         
         private AsteroidFactory _factory;
         private GameState _gameState;
-        
+        private bool _isReady;
+
         [Inject]
         public void Construct(AsteroidFactory factory, GameState gameState)
         {
             _factory = factory;
             _gameState = gameState;
         }
+
+        public void Initialize()
+        {
+            _isReady = true;
+        }
         
         public void Tick()
         {
-            if(_gameState.IsGamePaused)
+            if(_gameState.IsGamePaused || !_isReady)
                 return;
 
             if (!_isSpawning)

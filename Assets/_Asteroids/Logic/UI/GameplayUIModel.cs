@@ -1,4 +1,5 @@
 using System;
+using Assets._Asteroids.Logic.Constants;
 using Assets._Asteroids.Logic.Entities.Player;
 using Assets._Asteroids.Logic.Gameplay;
 using Assets._Asteroids.Logic.Services;
@@ -10,9 +11,9 @@ namespace Assets._Asteroids.Logic.UI
 {
     public class GameplayUIModel : IDisposable
     {
-        private readonly SpaceshipController _player;
-        private readonly ScoreService _scoreService;
-        private readonly IWeapon _secondaryWeapon;
+        private SpaceshipController _player;
+        private ScoreService _scoreService;
+        private IWeapon _secondaryWeapon;
 
         public event Action<Vector2, float> OnPlayerMoved;
         public event Action<float> OnPlayerRotated;
@@ -20,14 +21,16 @@ namespace Assets._Asteroids.Logic.UI
         public event Action<int> OnSecondaryCountChanged;
         public event Action<float, float> OnSecondaryCooldownChanged;
 
-        public GameplayUIModel(SpaceshipController player,
-            ScoreService scoreService,
+        public GameplayUIModel(ScoreService scoreService,
             [Inject(Id = GameplayConstants.SECONDARY_WEAPON_TAG)] IWeapon secondaryWeapon)
         {
-            _player = player;
             _scoreService = scoreService;
             _secondaryWeapon = secondaryWeapon;
+        }
 
+        public void Initialize(SpaceshipController player)
+        {
+            _player = player;
             _player.OnMove += HandleMove;
             _player.OnRotate += HandleRotate;
             _scoreService.OnScoreChanged += HandleScoreChanged;

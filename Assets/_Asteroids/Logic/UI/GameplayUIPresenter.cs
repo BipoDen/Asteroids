@@ -7,9 +7,8 @@ namespace Assets._Asteroids.Logic.UI
     {
         private GameplayUIView _view;
         private GameplayUIModel _model;
-        
-        
-        public GameplayUIPresenter(GameplayUIView view, GameplayUIModel model)
+
+        public void Initialize(GameplayUIView view, GameplayUIModel model)
         {
             _view = view;
             _model = model;
