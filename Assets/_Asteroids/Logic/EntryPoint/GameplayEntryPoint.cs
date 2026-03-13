@@ -24,6 +24,9 @@ namespace Assets._Asteroids.Logic.EntryPoint
         private SpaceshipFactory _playerFactory;
         private GameplayUIModel _gameplayUIModel;
         private ProjectilePool _projectilePool;
+        private DiContainer _container;
+        private Canvas _canvas;
+        private GameplayUIPresenter _gameplayUIPresenter;
         
         public GameplayEntryPoint( 
             ScoreService scoreService, 
@@ -35,7 +38,10 @@ namespace Assets._Asteroids.Logic.EntryPoint
             AsteroidSpawner asteroidSpawner, 
             SpaceshipFactory playerFactory, 
             GameplayUIModel gameplayUIModel, 
-            ProjectilePool projectilePool)
+            ProjectilePool projectilePool, 
+            DiContainer container, 
+            Canvas canvas, 
+            GameplayUIPresenter gameplayUIPresenter)
         {
             _scoreService = scoreService;
             _gameState = gameState;
@@ -46,6 +52,9 @@ namespace Assets._Asteroids.Logic.EntryPoint
             _playerFactory = playerFactory;
             _gameplayUIModel = gameplayUIModel;
             _projectilePool = projectilePool;
+            _container = container;
+            _canvas = canvas;
+            _gameplayUIPresenter = gameplayUIPresenter;
             _assetLoader = assetLoader;
         }
         public void Initialize()
@@ -60,11 +69,13 @@ namespace Assets._Asteroids.Logic.EntryPoint
             var (asteroidPrefab, 
                 ufoPrefab, 
                 playerPrefab,
-                projectilePrefab) = await UniTask.WhenAll(
+                projectilePrefab,
+                gameplayUIPrefab) = await UniTask.WhenAll(
                 _assetLoader.LoadAsync<GameObject>(AddressablesConstants.ASTEROIDS_ID),
                 _assetLoader.LoadAsync<GameObject>(AddressablesConstants.UFO_ID),
                 _assetLoader.LoadAsync<GameObject>(AddressablesConstants.SPACESHIP_ID),
-                _assetLoader.LoadAsync<GameObject>(AddressablesConstants.PROJECTILE_ID)
+                _assetLoader.LoadAsync<GameObject>(AddressablesConstants.PROJECTILE_ID),
+                _assetLoader.LoadAsync<GameObject>(AddressablesConstants.GAMEPLAY_UI_ID)
             );
             
             _asteroidPool.Initialize(asteroidPrefab, 10);
@@ -74,9 +85,10 @@ namespace Assets._Asteroids.Logic.EntryPoint
             
             _asteroidSpawner.Initialize();
             _ufoSpawner.Initialize(_player);
-            
             _gameState.Initialize(_player);
             _gameplayUIModel.Initialize(_player);
+            GameplayUIView uiView = _container.InstantiatePrefabForComponent<GameplayUIView>(gameplayUIPrefab, _canvas.transform);
+            _gameplayUIPresenter.Initialize(uiView, _gameplayUIModel);
         }
         
     }

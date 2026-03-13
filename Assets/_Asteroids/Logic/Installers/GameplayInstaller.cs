@@ -83,8 +83,7 @@ namespace Assets._Asteroids.Logic.Installers
 
         private void BindUI()
         {
-            GameplayUIView uiView = Container.InstantiatePrefabForComponent<GameplayUIView>(_gameplayView, _canvas.transform);
-            Container.Bind<GameplayUIView>().FromInstance(uiView);
+            Container.Bind<Canvas>().FromInstance(_canvas).AsSingle();
             Container.Bind<GameplayUIModel>().FromNew().AsSingle();
             Container.BindInterfacesAndSelfTo<GameplayUIPresenter>().AsSingle();
             
