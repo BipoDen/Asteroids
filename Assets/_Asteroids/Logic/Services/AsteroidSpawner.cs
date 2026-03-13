@@ -25,7 +25,7 @@ namespace Assets._Asteroids.Logic.Services
             _gameState = gameState;
         }
 
-        public void StartWork()
+        public void Initialize()
         {
             _isReady = true;
         }

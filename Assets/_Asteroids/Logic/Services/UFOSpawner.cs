@@ -18,15 +18,15 @@ namespace Assets._Asteroids.Logic.Services
         private GameState _gameState;
         private bool _isReady;
 
-        public UFOSpawner(UFOFactory factory, SpaceshipController player, GameState gameState)
+        public UFOSpawner(UFOFactory factory, GameState gameState)
         {
             _factory = factory;
-            _player = player;
             _gameState = gameState;
         }
 
-        public void StartWork()
+        public void Initialize(SpaceshipController player)
         {
+            _player = player;
             _isReady = true;
         }
         

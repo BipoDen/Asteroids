@@ -18,7 +18,6 @@ namespace Assets._Asteroids.Logic.Installers
     public class GameplayInstaller : MonoInstaller
     {
         [SerializeField] private Canvas _canvas;
-        [SerializeField] private SpaceshipController _playerShip;
         [SerializeField] private Transform _playerStartPosition;
         [SerializeField] private ProjectileView _projectilePrefab;
         [SerializeField] private LaserView _laserPrefab;
@@ -62,8 +61,7 @@ namespace Assets._Asteroids.Logic.Installers
             Container.Bind<IWeapon>().WithId(GameplayConstants.PRIMARY_WEAPON_TAG).To<ProjectileWeapon>().AsSingle();
             Container.Bind<IWeapon>().WithId(GameplayConstants.SECONDARY_WEAPON_TAG).To<LaserWeapon>().AsSingle();
             
-            SpaceshipController player = Container.InstantiatePrefabForComponent<SpaceshipController>(_playerShip, Vector3.zero, Quaternion.identity, null);
-            Container.BindInterfacesAndSelfTo<SpaceshipController>().FromInstance(player).AsSingle();
+            Container.Bind<SpaceshipFactory>().FromNew().AsSingle();
         }
 
         private void BindEnemies()
