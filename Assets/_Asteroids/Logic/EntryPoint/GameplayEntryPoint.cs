@@ -2,6 +2,7 @@ using Assets._Asteroids.Logic.Addressable;
 using Assets._Asteroids.Logic.Constants;
 using Assets._Asteroids.Logic.Entities.Enemies;
 using Assets._Asteroids.Logic.Entities.Player;
+using Assets._Asteroids.Logic.Factory;
 using Assets._Asteroids.Logic.Services;
 using Assets._Asteroids.Logic.UI;
 using Cysharp.Threading.Tasks;
@@ -22,6 +23,7 @@ namespace Assets._Asteroids.Logic.EntryPoint
         private UFOSpawner _ufoSpawner;
         private SpaceshipFactory _playerFactory;
         private GameplayUIModel _gameplayUIModel;
+        private ProjectilePool _projectilePool;
         
         public GameplayEntryPoint( 
             ScoreService scoreService, 
@@ -32,7 +34,8 @@ namespace Assets._Asteroids.Logic.EntryPoint
             UFOSpawner ufoSpawner, 
             AsteroidSpawner asteroidSpawner, 
             SpaceshipFactory playerFactory, 
-            GameplayUIModel gameplayUIModel)
+            GameplayUIModel gameplayUIModel, 
+            ProjectilePool projectilePool)
         {
             _scoreService = scoreService;
             _gameState = gameState;
@@ -42,6 +45,7 @@ namespace Assets._Asteroids.Logic.EntryPoint
             _asteroidSpawner = asteroidSpawner;
             _playerFactory = playerFactory;
             _gameplayUIModel = gameplayUIModel;
+            _projectilePool = projectilePool;
             _assetLoader = assetLoader;
         }
         public void Initialize()
@@ -55,14 +59,17 @@ namespace Assets._Asteroids.Logic.EntryPoint
         {
             var (asteroidPrefab, 
                 ufoPrefab, 
-                playerPrefab) = await UniTask.WhenAll(
+                playerPrefab,
+                projectilePrefab) = await UniTask.WhenAll(
                 _assetLoader.LoadAsync<GameObject>(AddressablesConstants.ASTEROIDS_ID),
                 _assetLoader.LoadAsync<GameObject>(AddressablesConstants.UFO_ID),
-                _assetLoader.LoadAsync<GameObject>(AddressablesConstants.SPACESHIP_ID)
+                _assetLoader.LoadAsync<GameObject>(AddressablesConstants.SPACESHIP_ID),
+                _assetLoader.LoadAsync<GameObject>(AddressablesConstants.PROJECTILE_ID)
             );
             
             _asteroidPool.Initialize(asteroidPrefab, 10);
             _ufoPool.Initialize(ufoPrefab, 10);
+            _projectilePool.Initialize(projectilePrefab, 10);
             _player = _playerFactory.CreatePlayer(playerPrefab);
             
             _asteroidSpawner.Initialize();

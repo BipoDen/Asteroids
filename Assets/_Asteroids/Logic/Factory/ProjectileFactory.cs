@@ -7,9 +7,8 @@ namespace Assets._Asteroids.Logic.Factory
     public class ProjectileFactory
     {
         private ProjectilePool _pool;
-        
-        [Inject]
-        public void Construct(ProjectilePool pool)
+
+        public ProjectileFactory(ProjectilePool pool)
         {
             _pool = pool;
         }

@@ -19,7 +19,6 @@ namespace Assets._Asteroids.Logic.Installers
     {
         [SerializeField] private Canvas _canvas;
         [SerializeField] private Transform _playerStartPosition;
-        [SerializeField] private ProjectileView _projectilePrefab;
         [SerializeField] private LaserView _laserPrefab;
         [SerializeField] private GameplayUIView _gameplayView;
         [SerializeField] private GameOverView _gameOverView;
@@ -51,10 +50,9 @@ namespace Assets._Asteroids.Logic.Installers
             Container.Bind<Transform>().WithId("StartPosition").FromInstance(_playerStartPosition).AsSingle();
             Container.Bind<LaserView>().FromInstance(_laserPrefab).AsSingle();
 
-            Container.BindMemoryPool<ProjectileView, ProjectilePool>()
-                .WithInitialSize(10)
-                .FromComponentInNewPrefab(_projectilePrefab)
-                .UnderTransformGroup("Projectiles");
+            Container.Bind<ProjectilePool>()
+                .AsSingle()
+                .WithArguments("Projectiles");
             
             Container.Bind<ProjectileFactory>().FromNew().AsSingle();
             
