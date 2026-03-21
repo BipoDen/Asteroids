@@ -1,4 +1,6 @@
 using Assets._Asteroids.Logic.Addressable;
+using Assets._Asteroids.Logic.Ads;
+using Assets._Asteroids.Logic.Ads.UnityAds;
 using Assets._Asteroids.Logic.Analytics;
 using Assets._Asteroids.Logic.Analytics.Firebase;
 using Assets._Asteroids.Logic.Gameplay;
@@ -19,7 +21,11 @@ namespace Assets._Asteroids.Logic.Installers
             Container.BindInterfacesTo<FirebaseInitializer>().FromNew().AsSingle();
             Container.Bind<IAnalyticsService>().To<FirebaseAnalyticsService>().AsSingle();
             Container.BindInterfacesAndSelfTo<BaseAssetLoader>().AsSingle();
-
+            
+            Container.BindInterfacesAndSelfTo<UnityAdsInitializer>().AsSingle();
+            Container.BindInterfacesAndSelfTo<RewardedAds>().AsSingle();
+            Container.BindInterfacesAndSelfTo<InterstitialAds>().AsSingle();
+            Container.Bind<IAdService>().To<UnityAdsService>().AsSingle();
         }
     }
 }

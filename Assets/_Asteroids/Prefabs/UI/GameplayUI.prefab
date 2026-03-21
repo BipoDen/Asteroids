@@ -138,7 +138,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 99999
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -481,7 +481,6 @@ MonoBehaviour:
   _rotationText: {fileID: 2637532320630509739}
   _secondaryCountText: {fileID: 955970315985997274}
   _laserCooldown: {fileID: 1714831534011474100}
-  _gameOverPanel: {fileID: 0}
 --- !u!1 &5704110817917403198
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,6 +1,8 @@
 using System;
+using Assets._Asteroids.Logic.Ads;
 using Assets._Asteroids.Logic.Analytics;
 using Assets._Asteroids.Logic.Entities.Player;
+using Cysharp.Threading.Tasks;
 
 namespace Assets._Asteroids.Logic.Services
 {
@@ -9,15 +11,17 @@ namespace Assets._Asteroids.Logic.Services
         private SpaceshipController _player;
         private StatsService _stats;
         private IAnalyticsService _analytics;
+        private IAdService _adService;
         public event Action OnGameOver;
         public event Action OnGameRestart;
         
         public bool IsGamePaused { get; private set; }
 
-        public GameState(StatsService statsService, IAnalyticsService analytics)
+        public GameState(StatsService statsService, IAnalyticsService analytics, IAdService adService)
         {
             _stats = statsService;
             _analytics = analytics;
+            _adService = adService;
         }
 
         public void Initialize(SpaceshipController player)
@@ -38,15 +42,21 @@ namespace Assets._Asteroids.Logic.Services
             IsGamePaused = true;
         }
 
+        public void ContinueGame()
+        {
+            IsGamePaused = false;
+        }
+
         private void GameOver()
         {
             IsGamePaused = true;
             OnGameOver?.Invoke();
-            _analytics.OnGameOverEvent(_stats.PrimaryCount, _stats.SecondaryCount, _stats.AsteroidsKillCount, _stats.UFOKillCount);
         }
 
-        public void RestartGame()
+        public async UniTask RestartGame()
         {
+            _analytics.OnGameOverEvent(_stats.PrimaryCount, _stats.SecondaryCount, _stats.AsteroidsKillCount, _stats.UFOKillCount);
+            await _adService.ShowInterstitialAd();
             GameStart();
             _player.ResetPosition();
             OnGameRestart?.Invoke();

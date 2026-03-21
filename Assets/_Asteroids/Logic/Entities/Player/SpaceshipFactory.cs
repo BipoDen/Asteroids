@@ -15,7 +15,7 @@ namespace Assets._Asteroids.Logic.Entities.Player
             _startPosition = startPosition;
         }
 
-        public SpaceshipController CreatePlayer(GameObject playerPrefab)
+        public SpaceshipController CreatePlayer(SpaceshipController playerPrefab)
         {
             var player = _container.InstantiatePrefabForComponent<SpaceshipController>(
                 playerPrefab, _startPosition.position, Quaternion.identity, null);

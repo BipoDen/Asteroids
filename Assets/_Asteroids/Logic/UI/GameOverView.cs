@@ -9,8 +9,10 @@ namespace Assets._Asteroids.Logic.UI
         [SerializeField] private TextMeshProUGUI _scoreText;
         [SerializeField] private TextMeshProUGUI _maxScoreText;
         [SerializeField] private Button _restartButton;
+        [SerializeField] private Button _AdClickButton;
 
         public Button.ButtonClickedEvent OnRestart => _restartButton.onClick;
+        public Button.ButtonClickedEvent OnAdClick => _AdClickButton.onClick;
         
         public void ShowScore(int score)
         {
@@ -23,6 +25,11 @@ namespace Assets._Asteroids.Logic.UI
                 _maxScoreText.text = $"Max score: {maxScore.ToString()}";
             else
                 _maxScoreText.text = "New Record!";
+        }
+        
+        public void SetAdButtonInteractable(bool interactable)
+        {
+            _AdClickButton.interactable = interactable;
         }
     }
 }
