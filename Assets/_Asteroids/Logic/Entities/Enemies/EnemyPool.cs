@@ -10,18 +10,18 @@ namespace Assets._Asteroids.Logic.Entities.Enemies
     {
         private readonly Stack<T> _pool = new();
         private readonly Transform _container;
-        private readonly DiContainer _diContainer;
+        private readonly IInstantiator _instantiator;
         private GameObject _prefab;
 
-        public EnemyPool(DiContainer diContainer, string groupName)
+        public EnemyPool(IInstantiator instantiator, string groupName)
         {
-            _diContainer = diContainer;
+            _instantiator = instantiator;
             _container = new GameObject(groupName).transform;
         }
         
-        public void Initialize(GameObject prefab, int initialSize)
+        public void Initialize(T prefab, int initialSize)
         {
-            _prefab = prefab;
+            _prefab = prefab.gameObject;
             Debug.Log(_container);
             for (int i = 0; i < initialSize; i++)
             {
@@ -46,7 +46,7 @@ namespace Assets._Asteroids.Logic.Entities.Enemies
 
         private T CreateNew()
         {
-            return _diContainer.InstantiatePrefabForComponent<T>(_prefab, _container);
+            return _instantiator.InstantiatePrefabForComponent<T>(_prefab, _container);
         }
 
         public void Dispose()

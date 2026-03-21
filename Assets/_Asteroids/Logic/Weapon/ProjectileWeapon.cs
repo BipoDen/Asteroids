@@ -9,7 +9,7 @@ namespace Assets._Asteroids.Logic.Weapon
 {
     public class ProjectileWeapon : IWeapon
     {
-        private bool _isReloading = false;
+        private bool _isReloading;
         private float _delay = 0.5f;
         private float _bulletLifeTime = 5f;
         private float _bulletSpeed = 7.5f;

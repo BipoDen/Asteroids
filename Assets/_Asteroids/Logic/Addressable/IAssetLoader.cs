@@ -1,12 +1,10 @@
 using Cysharp.Threading.Tasks;
-using UnityEngine;
 
 namespace Assets._Asteroids.Logic.Addressable
 {
     public interface IAssetLoader
     {
-        UniTask<T> LoadAsync<T>(string key);
-        //UniTask<GameObject> InstantiateAsync(string key, Transform parent = null);
+        UniTask<T> LoadAsync<T>(string key) where T : UnityEngine.Object;
         void Release(string key);
     }
 }

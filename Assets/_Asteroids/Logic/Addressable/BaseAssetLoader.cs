@@ -11,7 +11,7 @@ namespace Assets._Asteroids.Logic.Addressable
     {
         private readonly Dictionary<string, AsyncOperationHandle> _cachedHandles = new();
         
-        public async UniTask<T> LoadAsync<T>(string key)
+        public async UniTask<T> LoadAsync<T>(string key) where T : UnityEngine.Object
         {
             if (_cachedHandles.TryGetValue(key, out var cachedHandle))
                 return (T)cachedHandle.Result;

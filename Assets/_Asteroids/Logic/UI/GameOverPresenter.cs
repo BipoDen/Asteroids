@@ -1,6 +1,8 @@
 using System;
+using Assets._Asteroids.Logic.Ads;
 using Assets._Asteroids.Logic.Gameplay;
 using Assets._Asteroids.Logic.Services;
+using Cysharp.Threading.Tasks;
 
 namespace Assets._Asteroids.Logic.UI
 {
@@ -11,21 +13,40 @@ namespace Assets._Asteroids.Logic.UI
         private ScoreService _scoreService;
         private GameState _gameState;
         private SaveData _saveData;
+        private IAdService _adService;
         
-        public GameOverPresenter(ScoreService scoreService, GameState gameState, SaveData saveData)
+        public GameOverPresenter(ScoreService scoreService, GameState gameState, SaveData saveData, IAdService adService)
         {
             _scoreService = scoreService;
             _gameState = gameState;
             _saveData = saveData;
+            _adService = adService;
         }
 
         public void Initialize(GameOverView view)
         {
             _view = view;
             _view.OnRestart.AddListener(Restart);
+            _view.OnAdClick.AddListener(ShowAd);
             
             _gameState.OnGameOver += Show;
             Hide();
+        }
+
+        private void ShowAd()
+        {
+            ContinueGame().Forget();
+            _view.SetAdButtonInteractable(false);
+        }
+
+        private async UniTaskVoid ContinueGame()
+        {
+            bool result = await _adService.ShowRewardedAd();
+            if (result)
+            {
+                _gameState.ContinueGame();
+                Hide();
+            }
         }
 
         private void Show()
@@ -44,12 +65,14 @@ namespace Assets._Asteroids.Logic.UI
         {
             Hide();
             _gameState.RestartGame();
+            _view.SetAdButtonInteractable(true);
         }
 
         public void Dispose()
         {
             _gameState.OnGameOver -= Show;
             _view.OnRestart.RemoveListener(Restart);
+            _view.OnAdClick.RemoveListener(ShowAd);
         }
     }
 }
