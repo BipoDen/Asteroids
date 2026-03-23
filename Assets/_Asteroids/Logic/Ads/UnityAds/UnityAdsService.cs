@@ -13,6 +13,10 @@ namespace Assets._Asteroids.Logic.Ads.UnityAds
             _initializer = initializer;
             _rewardedAds = rewardedAds;
             _interstitialAds = interstitialAds;
+            
+            InitializeAds();
+            LoadRewardedAd();
+            LoadInterstitialAd();
         }
 
         public void InitializeAds()

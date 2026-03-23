@@ -1,6 +1,8 @@
 using System;
 using System.Threading;
 using Assets._Asteroids.Logic.Analytics;
+using Assets._Asteroids.Logic.RemoteConfig;
+using Assets._Asteroids.Logic.RemoteConfig.Configs.Weapons;
 using UnityEngine;
 using Zenject;
 using Cysharp.Threading.Tasks;
@@ -13,35 +15,37 @@ namespace Assets._Asteroids.Logic.Weapon
         private LaserView _laserPrefab;
         private LaserView _laserView;
         private Transform _startPosition;
+        private LaserWeaponConfig _config;
         
         public int MaxLaserCount { get; private set; } = 5;
         public int LaserCount { get; private set; }
-
-        private float _laserDuration = 1.5f;
-        private float _laserDistance = 30f;
-        private float _laserCooldown = 5f;
+        
         private bool _isLaserActive = false;
         private bool _isLaserReloading = false;
 
         private CancellationTokenSource _cts;
         private IAnalyticsService _analyticsService;
+        private IRemoteConfig _configProvider;
         
         public event Action<int> OnCountChanged;
         public event Action<float, float> OnReloadTimeChanged;
         public event Action OnShoot;
 
         [Inject]
-        public void Construct(LaserView laserPrefab, IAnalyticsService analyticsService)
+        public void Construct(LaserView laserPrefab, IAnalyticsService analyticsService, IRemoteConfig configProvider)
         {
             _laserPrefab = laserPrefab;
             _analyticsService = analyticsService;
+            _configProvider = configProvider;
         }
         
         public void Init(Transform launchOffset)
         {
+            _config = _configProvider.GetRemoteConfig<LaserWeaponConfig>();
+            
             _startPosition = launchOffset;
             _laserView = Object.Instantiate(_laserPrefab, _startPosition);
-            _laserView.Init(_startPosition, _laserDistance);
+            _laserView.Init(_startPosition, _config.LaserDistance);
             _laserView.gameObject.SetActive(false);
             
             ResetWeapon();
@@ -59,7 +63,7 @@ namespace Assets._Asteroids.Logic.Weapon
 
             LaserCount = MaxLaserCount;
             OnCountChanged?.Invoke(LaserCount);
-            OnReloadTimeChanged?.Invoke(0f, _laserCooldown);
+            OnReloadTimeChanged?.Invoke(0f, _config.LaserCooldown);
 
             if (_laserView != null)
                 _laserView.gameObject.SetActive(false);
@@ -94,7 +98,7 @@ namespace Assets._Asteroids.Logic.Weapon
             try
             {
                 _laserView.gameObject.SetActive(true);
-                await UniTask.Delay(TimeSpan.FromSeconds(_laserDuration), cancellationToken: token);
+                await UniTask.Delay(TimeSpan.FromSeconds(_config.LaserDuration), cancellationToken: token);
             }
             catch (OperationCanceledException) { }
             finally
@@ -114,14 +118,14 @@ namespace Assets._Asteroids.Logic.Weapon
             {
                 while (LaserCount < MaxLaserCount)
                 {
-                    float endTime = Time.time + _laserCooldown;
+                    float endTime = Time.time + _config.LaserCooldown;
 
                     while (Time.time < endTime)
                     {
                         token.ThrowIfCancellationRequested();
 
                         float timeLeft = endTime - Time.time;
-                        OnReloadTimeChanged?.Invoke(timeLeft, _laserCooldown);
+                        OnReloadTimeChanged?.Invoke(timeLeft, _config.LaserCooldown);
 
                         await UniTask.Yield(PlayerLoopTiming.Update, token);
                     }
