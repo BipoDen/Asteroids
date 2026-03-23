@@ -2,6 +2,8 @@ using System;
 using Assets._Asteroids.Logic.Entities.Enemies;
 using Assets._Asteroids.Logic.Gameplay;
 using Assets._Asteroids.Logic.Input;
+using Assets._Asteroids.Logic.RemoteConfig;
+using Assets._Asteroids.Logic.RemoteConfig.Configs;
 using Assets._Asteroids.Logic.Services;
 using UnityEngine;
 using Zenject;
@@ -12,14 +14,13 @@ namespace Assets._Asteroids.Logic.Entities.Player
     public class SpaceshipController : SpaceEntity
     {
         private IInput _input;
-        
-        [SerializeField] private float _rotateSpeed;
-        [SerializeField] private float _moveAcceleration;
-        [SerializeField] private float _maxSpeed;
+
+        private SpaceshipConfig _config;
 
         private Rigidbody2D _rigidbody2D;
         private Transform _startPosition;
         private GameState _gameState;
+        private IRemoteConfig _configProvider;
         public event Action OnGameOver;
         public event Action<Vector2, float> OnMove;
         public event Action<float> OnRotate;
@@ -30,12 +31,16 @@ namespace Assets._Asteroids.Logic.Entities.Player
         }
         
         [Inject]
-        public void Construct(IInput input, SpaceScreen spaceScreen, [Inject(Id = "StartPosition")] Transform startPosition, GameState gameState)
+        public void Construct(IInput input, SpaceScreen spaceScreen, [Inject(Id = "StartPosition")] Transform startPosition, GameState gameState, 
+            IRemoteConfig configProvider)
         {
             _input = input;
             _spaceScreen = spaceScreen;
             _startPosition = startPosition;
             _gameState = gameState;
+            _configProvider = configProvider;
+            
+            _config = _configProvider.GetRemoteConfig<SpaceshipConfig>();
         }
         
         private void FixedUpdate()
@@ -50,13 +55,13 @@ namespace Assets._Asteroids.Logic.Entities.Player
             if (input <= 0f || _gameState.IsGamePaused)
                 return;
             
-            Vector2 forwardForce = transform.up * _moveAcceleration * input;
+            Vector2 forwardForce = transform.up * _config.MoveAcceleration * input;
             _rigidbody2D.AddForce(forwardForce, ForceMode2D.Force);
             
-            if (_rigidbody2D.linearVelocity.magnitude > _maxSpeed)
+            if (_rigidbody2D.linearVelocity.magnitude > _config.MaxSpeed)
             {
                 _rigidbody2D.linearVelocity =
-                    _rigidbody2D.linearVelocity.normalized * _maxSpeed;
+                    _rigidbody2D.linearVelocity.normalized * _config.MaxSpeed;
             }
             
             OnMove?.Invoke(transform.position, _rigidbody2D.linearVelocity.magnitude);
@@ -71,7 +76,7 @@ namespace Assets._Asteroids.Logic.Entities.Player
             
             if (!Mathf.Approximately(input, 0f))
             { 
-                float rotationAngle = -input * _rotateSpeed * Time.fixedDeltaTime;
+                float rotationAngle = -input * _config.RotateSpeed * Time.fixedDeltaTime;
                 _rigidbody2D.MoveRotation(_rigidbody2D.rotation + rotationAngle);
             }
         }

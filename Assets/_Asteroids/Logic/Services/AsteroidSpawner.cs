@@ -1,5 +1,8 @@
 using System;
 using Assets._Asteroids.Logic.Factory;
+using Assets._Asteroids.Logic.RemoteConfig;
+using Assets._Asteroids.Logic.RemoteConfig.Configs;
+using Assets._Asteroids.Logic.RemoteConfig.Configs.Enemies;
 using Cysharp.Threading.Tasks;
 using Zenject;
 
@@ -7,27 +10,27 @@ namespace Assets._Asteroids.Logic.Services
 {
     public class AsteroidSpawner : ITickable
     {
-        private float _spawnDelay = 3f;
-        private float _asteroidSpeed = 2f;
-        private int _fragmentCount = 3;
-        private int _scorePerKill = 100;
+        private AsteroidsConfig _config;
         private bool _isSpawning;
         private bool isReadyToSpawn;
         
         private AsteroidFactory _factory;
         private GameState _gameState;
+        private IRemoteConfig _configProvider;
         private bool _isReady;
 
         [Inject]
-        public void Construct(AsteroidFactory factory, GameState gameState)
+        public void Construct(AsteroidFactory factory, GameState gameState, IRemoteConfig configProvider)
         {
             _factory = factory;
             _gameState = gameState;
+            _configProvider = configProvider;
         }
 
         public void Initialize()
         {
             _isReady = true;
+            _config = _configProvider.GetRemoteConfig<AsteroidsConfig>();
         }
         
         public void Tick()
@@ -42,8 +45,8 @@ namespace Assets._Asteroids.Logic.Services
         private async UniTask SpawnAsteroid()
         {
             _isSpawning = true;
-            _factory.Create(_asteroidSpeed, _fragmentCount, _scorePerKill);
-            await UniTask.Delay(TimeSpan.FromSeconds(_spawnDelay));
+            _factory.Create(_config.AsteroidSpeed, _config.FragmentCount, _config.ScorePerKill);
+            await UniTask.Delay(TimeSpan.FromSeconds(_config.SpawnDelay));
             _isSpawning = false;
         }
     }
