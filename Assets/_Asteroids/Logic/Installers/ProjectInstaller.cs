@@ -21,7 +21,7 @@ namespace Assets._Asteroids.Logic.Installers
             var saveService = Container.Resolve<ISaveService>();
             var data = saveService.Load();
             Container.Bind<SaveData>().FromInstance(data).AsSingle();
-            
+            Container.Bind<SceneLoader>().AsSingle();
             Container.BindInterfacesTo<FirebaseInitializer>().FromNew().AsSingle();
             Container.Bind<IAnalyticsService>().To<FirebaseAnalyticsService>().AsSingle();
             Container.BindInterfacesAndSelfTo<BaseAssetLoader>().AsSingle();

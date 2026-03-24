@@ -10,12 +10,14 @@ using Zenject;
 
 namespace Assets._Asteroids.Logic.IAP
 {
-    public class UnityPurchasingService : IInitializable, IPurchasingService
+    public class UnityPurchasingService : IInitializable, IPurchasingService, IDisposable
     {
         private StoreController _storeController;
         private readonly Dictionary<string, IPurchaseProduct> _products = new();
         private bool _isInitialized;
-
+        
+        private UniTaskCompletionSource<bool> _purchaseTcs;
+        
         public UnityPurchasingService(List<IPurchaseProduct> products)
         {
             foreach (var product in products)
@@ -97,6 +99,8 @@ namespace Assets._Asteroids.Logic.IAP
 
                 if(_products.TryGetValue(productId, out var product))
                     product.OnPurchased();
+                
+                _purchaseTcs?.TrySetResult(true);
             }
         }
         
@@ -113,6 +117,8 @@ namespace Assets._Asteroids.Logic.IAP
             var message = failedOrder.Details;
             
             Debug.Log($"Failed to purchase order: {productId}. Reason: {reason}. Message: {message}");
+            
+            _purchaseTcs?.TrySetResult(false);
         }
 
         private void OnPurchaseDeferred(DeferredOrder deferredOrder)
@@ -120,16 +126,32 @@ namespace Assets._Asteroids.Logic.IAP
             Debug.Log($"Purchase deferred: {deferredOrder}");
         }
 
-        public void MakePurchase(string productId)
+        public async UniTask<bool> MakePurchaseAsync(string productId)
         {
             if (!_isInitialized)
             {
                 Debug.Log("IAP is not initialized");
-                return;
+                return false;
             }
+            if (!_products.ContainsKey(productId)) return false;
+            
+            _purchaseTcs = new UniTaskCompletionSource<bool>();
+            _storeController.PurchaseProduct(productId);
+            
+            return await _purchaseTcs.Task;
+        }
 
-            if(_products.ContainsKey(productId))
-                _storeController.PurchaseProduct(productId);
+        public void Dispose()
+        {
+            _storeController.OnProductsFetched -= OnProductsFetched;
+            _storeController.OnPurchasesFetched -= OnPurchasesFetched;
+            _storeController.OnProductsFetchFailed -= OnProductsFetchedFailed;
+            _storeController.OnPurchasesFetchFailed -= OnPurchasesFetchFailed;
+            _storeController.OnStoreDisconnected -= OnStoreDisconnected;
+            _storeController.OnPurchasePending -= OnPurchasePending;
+            _storeController.OnPurchaseConfirmed -= OnPurchaseConfirmed;
+            _storeController.OnPurchaseFailed -= OnPurchaseFailed;
+            _storeController.OnPurchaseDeferred -= OnPurchaseDeferred;
         }
     }
 }
