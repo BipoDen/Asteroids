@@ -1,22 +1,24 @@
 using System;
 using Cysharp.Threading.Tasks;
 using Firebase.RemoteConfig;
+using Newtonsoft.Json;
 using UnityEngine;
 using Zenject;
 
 namespace Assets._Asteroids.Logic.RemoteConfig
 {
-    public class FirebaseRemoteConfigProvider : IInitializable, IRemoteConfig
+    public class FirebaseRemoteConfigProvider : IRemoteConfig
     {
-        public void Initialize()
+        public async UniTask Initialize()
         {
-            FetchDataAsync().Forget();
+            await FetchDataAsync();
         }
 
         public T GetRemoteConfig<T>()
         {
+            
             var json   = FirebaseRemoteConfig.DefaultInstance.GetValue(typeof(T).Name).StringValue;
-            var config = JsonUtility.FromJson<T>(json);
+            var config = JsonConvert.DeserializeObject<T>(json);
             return config;
         }
 

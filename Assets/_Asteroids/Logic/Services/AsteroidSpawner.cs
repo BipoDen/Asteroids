@@ -12,7 +12,6 @@ namespace Assets._Asteroids.Logic.Services
     {
         private AsteroidsConfig _config;
         private bool _isSpawning;
-        private bool isReadyToSpawn;
         
         private AsteroidFactory _factory;
         private GameState _gameState;

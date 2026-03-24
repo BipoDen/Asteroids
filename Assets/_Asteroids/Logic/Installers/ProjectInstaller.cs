@@ -4,8 +4,11 @@ using Assets._Asteroids.Logic.Ads.UnityAds;
 using Assets._Asteroids.Logic.Analytics;
 using Assets._Asteroids.Logic.Analytics.Firebase;
 using Assets._Asteroids.Logic.Gameplay;
+using Assets._Asteroids.Logic.IAP;
+using Assets._Asteroids.Logic.IAP.Products;
 using Assets._Asteroids.Logic.RemoteConfig;
 using Assets._Asteroids.Logic.Services;
+using UnityEngine.Purchasing;
 using Zenject;
 
 namespace Assets._Asteroids.Logic.Installers
@@ -18,7 +21,7 @@ namespace Assets._Asteroids.Logic.Installers
             var saveService = Container.Resolve<ISaveService>();
             var data = saveService.Load();
             Container.Bind<SaveData>().FromInstance(data).AsSingle();
-            
+            Container.Bind<SceneLoader>().AsSingle();
             Container.BindInterfacesTo<FirebaseInitializer>().FromNew().AsSingle();
             Container.Bind<IAnalyticsService>().To<FirebaseAnalyticsService>().AsSingle();
             Container.BindInterfacesAndSelfTo<BaseAssetLoader>().AsSingle();
@@ -28,6 +31,15 @@ namespace Assets._Asteroids.Logic.Installers
             Container.BindInterfacesAndSelfTo<InterstitialAds>().AsSingle();
             Container.Bind<IAdService>().To<UnityAdsService>().AsSingle();
             Container.BindInterfacesTo<FirebaseRemoteConfigProvider>().AsSingle();
+            
+            InstallIAPs();
+        }
+
+        private void InstallIAPs()
+        {
+            Container.Bind<IPurchaseProduct>().To<NoAdsProduct>().AsSingle();
+            
+            Container.BindInterfacesAndSelfTo<UnityPurchasingService>().AsSingle();
         }
     }
 }

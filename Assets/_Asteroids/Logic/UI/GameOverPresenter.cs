@@ -39,10 +39,18 @@ namespace Assets._Asteroids.Logic.UI
             _view.SetAdButtonInteractable(false);
         }
 
-        private async UniTaskVoid ContinueGame()
+        private async UniTask ContinueGame()
         {
-            bool result = await _adService.ShowRewardedAd();
-            if (result)
+            if (!_saveData.IsAdDisabled)
+            {
+                bool result = await _adService.ShowRewardedAd();
+                if (result)
+                {
+                    _gameState.ContinueGame();
+                    Hide();
+                }
+            }
+            else
             {
                 _gameState.ContinueGame();
                 Hide();

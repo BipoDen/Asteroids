@@ -15,6 +15,11 @@ MonoBehaviour:
   m_GroupName: GameplayPrefabs
   m_GUID: c43e83bf4d1ed174ea94585a4b855e7a
   m_SerializeEntries:
+  - m_GUID: 03a687f3a8622f840872c703f40615be
+    m_Address: MainMenuUIScreen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2a465c6c12df4304f83d068518ab3622
     m_Address: UFOPrefab
     m_ReadOnly: 0
