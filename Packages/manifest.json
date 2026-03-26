@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "com.cysharp.unitask": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
-    "com.github-glitchenzo.nugetforunity": "https://github.com/GlitchEnzo/NuGetForUnity.git?path=/src/NuGetForUnity",
     "com.unity.addressables": "2.8.1",
     "com.unity.ads": "4.17.0",
     "com.unity.collab-proxy": "2.11.3",
@@ -13,6 +12,7 @@
     "com.unity.nuget.newtonsoft-json": "3.2.2",
     "com.unity.purchasing": "5.2.0",
     "com.unity.render-pipelines.universal": "17.3.0",
+    "com.unity.services.cloudsave": "3.4.0",
     "com.unity.test-framework": "1.6.0",
     "com.unity.timeline": "1.8.10",
     "com.unity.ugui": "2.0.0",

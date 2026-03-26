@@ -1,4 +1,5 @@
 using Assets._Asteroids.Logic.Gameplay;
+using Assets._Asteroids.Logic.SaveProviders;
 using Assets._Asteroids.Logic.Services;
 using UnityEngine.Purchasing;
 
@@ -12,9 +13,9 @@ namespace Assets._Asteroids.Logic.IAP.Products
         private SaveData _saveData;
         private ISaveService _saveService;
 
-        public NoAdsProduct(SaveData saveData, ISaveService saveService)
+        public NoAdsProduct(PlayerDataProvider playerDataProvider, ISaveService saveService)
         {
-            _saveData = saveData;
+            _saveData = playerDataProvider.SaveData;
             _saveService = saveService;
         }
         

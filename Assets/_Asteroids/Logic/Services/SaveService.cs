@@ -1,36 +1,83 @@
+using System;
 using Assets._Asteroids.Logic.Gameplay;
-using Newtonsoft.Json;
-using UnityEngine;
+using Assets._Asteroids.Logic.SaveProviders;
+using Cysharp.Threading.Tasks;
 
 namespace Assets._Asteroids.Logic.Services
 {
     public class SaveService : ISaveService
     {
-        private const string SAVE_KEY = "PLAYER_DATA";
-
-        public SaveService()
-        {
-            Load();
-        }
+        private LocalSaveProvider _localSaveProvider;
+        private CloudSaveProvider _cloudSaveProvider;
         
-        public void Save(SaveData data)
+        private SaveData _saveData;
+
+        public event Action<SaveConflictResolveRequest> OnConflictDetected;
+
+        public SaveService(LocalSaveProvider localSaveProvider, CloudSaveProvider cloudSaveProvider)
         {
-            var json = JsonConvert.SerializeObject(data);
-            
-            PlayerPrefs.SetString(SAVE_KEY, json);
+            _localSaveProvider = localSaveProvider;
+            _cloudSaveProvider = cloudSaveProvider;
         }
 
-        public SaveData Load()
+        public async UniTask Save(SaveData data)
         {
-            var json = PlayerPrefs.GetString(SAVE_KEY);
-            
-            var data = string.IsNullOrEmpty(json) 
-                ? new SaveData()
-                : JsonConvert.DeserializeObject<SaveData>(json);
-            
-            Save(data);
+            data.LastModified = DateTimeOffset.UtcNow.ToUnixTimeSeconds();
+            _localSaveProvider.Save(data);
 
-            return data;
+            if (_cloudSaveProvider.IsAvailable())
+                await _cloudSaveProvider.Save(data);
+            
+        }
+
+        public async UniTask<SaveData> Load()
+        {
+            if (!_cloudSaveProvider.IsAvailable())
+            {
+                _saveData = await _localSaveProvider.Load();
+                return _saveData;
+            }
+
+            try
+            {
+                await _cloudSaveProvider.InitializeAsync();
+            }
+            catch
+            {
+                _saveData = await _localSaveProvider.Load();
+                return _saveData;
+            }
+
+            (SaveData localSave, SaveData cloudSave) =
+                await UniTask.WhenAll(_localSaveProvider.Load(), _cloudSaveProvider.Load());
+            
+            var activeSave = await ResolveConflict(localSave, cloudSave);
+
+            return activeSave;
+        }
+
+        private async UniTask<SaveData> ResolveConflict(SaveData localSave, SaveData cloudSave)
+        {
+            if (localSave == null) return cloudSave;
+            if (cloudSave == null) return localSave;
+            
+            if (cloudSave.LastModified >= localSave.LastModified)
+                return cloudSave;
+            
+            var request = new SaveConflictResolveRequest
+            {
+                LocalSave = localSave,
+                CloudSave = cloudSave
+            };
+            
+            OnConflictDetected?.Invoke(request);
+            
+            var chosen = await request.CompletionSource.Task;
+            
+            _localSaveProvider.Save(chosen);
+            await _cloudSaveProvider.Save(chosen);
+
+            return chosen;
         }
     }
 }
