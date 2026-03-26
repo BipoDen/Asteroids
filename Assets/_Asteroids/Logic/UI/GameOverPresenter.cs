@@ -1,6 +1,7 @@
 using System;
 using Assets._Asteroids.Logic.Ads;
 using Assets._Asteroids.Logic.Gameplay;
+using Assets._Asteroids.Logic.SaveProviders;
 using Assets._Asteroids.Logic.Services;
 using Cysharp.Threading.Tasks;
 
@@ -15,11 +16,11 @@ namespace Assets._Asteroids.Logic.UI
         private SaveData _saveData;
         private IAdService _adService;
         
-        public GameOverPresenter(ScoreService scoreService, GameState gameState, SaveData saveData, IAdService adService)
+        public GameOverPresenter(ScoreService scoreService, GameState gameState, PlayerDataProvider playerDataProvider, IAdService adService)
         {
             _scoreService = scoreService;
             _gameState = gameState;
-            _saveData = saveData;
+            _saveData = playerDataProvider.SaveData;
             _adService = adService;
         }
 

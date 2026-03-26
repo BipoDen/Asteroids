@@ -1,8 +1,6 @@
 using Assets._Asteroids.Logic.Constants;
-using Assets._Asteroids.Logic.Gameplay;
 using Assets._Asteroids.Logic.RemoteConfig;
 using Assets._Asteroids.Logic.Services;
-using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace Assets._Asteroids.Logic.EntryPoint

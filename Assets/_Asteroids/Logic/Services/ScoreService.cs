@@ -1,5 +1,6 @@
 using System;
 using Assets._Asteroids.Logic.Gameplay;
+using Assets._Asteroids.Logic.SaveProviders;
 
 namespace Assets._Asteroids.Logic.Services
 {
@@ -13,11 +14,11 @@ namespace Assets._Asteroids.Logic.Services
         
         public event Action<int> OnScoreChanged;
 
-        public ScoreService(GameState gameState, ISaveService saveService, SaveData saveData)
+        public ScoreService(GameState gameState, ISaveService saveService, PlayerDataProvider playerDataProvider)
         {
             _gameState = gameState;
             _saveService = saveService;
-            _saveData = saveData;
+            _saveData = playerDataProvider.SaveData;
         }
 
         public void Initialize()

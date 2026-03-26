@@ -3,6 +3,7 @@ using Assets._Asteroids.Logic.Ads;
 using Assets._Asteroids.Logic.Analytics;
 using Assets._Asteroids.Logic.Entities.Player;
 using Assets._Asteroids.Logic.Gameplay;
+using Assets._Asteroids.Logic.SaveProviders;
 using Cysharp.Threading.Tasks;
 
 namespace Assets._Asteroids.Logic.Services
@@ -19,12 +20,12 @@ namespace Assets._Asteroids.Logic.Services
         
         public bool IsGamePaused { get; private set; }
 
-        public GameState(StatsService statsService, IAnalyticsService analytics, IAdService adService, SaveData saveData)
+        public GameState(StatsService statsService, IAnalyticsService analytics, IAdService adService, PlayerDataProvider playerDataProvider)
         {
             _stats = statsService;
             _analytics = analytics;
             _adService = adService;
-            _saveData = saveData;
+            _saveData = playerDataProvider.SaveData;
         }
 
         public void Initialize(SpaceshipController player)

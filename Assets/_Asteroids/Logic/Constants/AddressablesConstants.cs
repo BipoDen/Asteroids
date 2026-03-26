@@ -11,5 +11,6 @@ namespace Assets._Asteroids.Logic.Constants
         public const string GAMEPLAY_UI_ID =  "GameplayUIScreen";
         public const string GAME_OVER_UI_ID =  "GameOverPanel";
         public const string MAIN_MENU_UI_ID =  "MainMenuUIScreen";
+        public const string MAIN_MENU_CONFLICT_PANEL = "ConflictPanel";
     }
 }
