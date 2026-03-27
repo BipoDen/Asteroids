@@ -8,7 +8,12 @@ namespace Assets._Asteroids.Logic.SaveProviders
     public class LocalSaveProvider : ISaveProvider
     {
         private const string SAVE_KEY = "PLAYER_DATA_LOCAL";
-        
+
+        public async UniTask Initialize()
+        {
+            
+        }
+
         public bool IsAvailable() => true;
 
         public async UniTask Save(SaveData data)

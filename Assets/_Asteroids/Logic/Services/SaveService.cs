@@ -1,20 +1,23 @@
 using System;
+using Assets._Asteroids.Logic.Constants;
 using Assets._Asteroids.Logic.Gameplay;
 using Assets._Asteroids.Logic.SaveProviders;
 using Cysharp.Threading.Tasks;
+using Zenject;
 
 namespace Assets._Asteroids.Logic.Services
 {
     public class SaveService : ISaveService
     {
-        private LocalSaveProvider _localSaveProvider;
-        private CloudSaveProvider _cloudSaveProvider;
+        private ISaveProvider _localSaveProvider;
+        private ISaveProvider _cloudSaveProvider;
         
         private SaveData _saveData;
 
         public event Action<SaveConflictResolveRequest> OnConflictDetected;
 
-        public SaveService(LocalSaveProvider localSaveProvider, CloudSaveProvider cloudSaveProvider)
+        public SaveService([Inject(Id = SaveConstants.LOCAL_ID)] ISaveProvider localSaveProvider, 
+            [Inject(Id = SaveConstants.CLOUD_ID)] ISaveProvider cloudSaveProvider)
         {
             _localSaveProvider = localSaveProvider;
             _cloudSaveProvider = cloudSaveProvider;
@@ -40,7 +43,7 @@ namespace Assets._Asteroids.Logic.Services
 
             try
             {
-                await _cloudSaveProvider.InitializeAsync();
+                await _cloudSaveProvider.Initialize();
             }
             catch
             {
