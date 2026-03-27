@@ -1,3 +1,4 @@
+using Assets._Asteroids.Logic.Constants;
 using Assets._Asteroids.Logic.Gameplay;
 using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
@@ -7,7 +8,7 @@ namespace Assets._Asteroids.Logic.SaveProviders
 {
     public class LocalSaveProvider : ISaveProvider
     {
-        private const string SAVE_KEY = "PLAYER_DATA_LOCAL";
+        private const string SAVE_KEY = SaveConstants.LOCAL_SAVE_KEY;
 
         public bool IsAvailable() => true;
 
