@@ -3,6 +3,9 @@ using Assets._Asteroids.Logic.Constants;
 using Assets._Asteroids.Logic.Gameplay;
 using Assets._Asteroids.Logic.SaveProviders;
 using Cysharp.Threading.Tasks;
+using Unity.Services.Authentication;
+using Unity.Services.Core;
+using UnityEngine;
 using Zenject;
 
 namespace Assets._Asteroids.Logic.Services
@@ -43,7 +46,8 @@ namespace Assets._Asteroids.Logic.Services
 
             try
             {
-                await _cloudSaveProvider.Initialize();
+                if(_cloudSaveProvider is IInitializable initializable)
+                    initializable.Initialize();
             }
             catch
             {

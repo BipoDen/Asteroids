@@ -6,14 +6,15 @@ using Unity.Services.Authentication;
 using Unity.Services.CloudSave;
 using Unity.Services.Core;
 using UnityEngine;
+using Zenject;
 using SaveData = Assets._Asteroids.Logic.Gameplay.SaveData;
 
 namespace Assets._Asteroids.Logic.SaveProviders
 {
-    public class CloudSaveProvider : ISaveProvider
+    public class CloudSaveProvider : ISaveProvider, IInitializable
     {
         private const string SAVE_KEY = "PLAYER_DATA_CLOUD";
-        public async UniTask Initialize()
+        public async void Initialize()
         {
             await UnityServices.InitializeAsync();
             if (!AuthenticationService.Instance.IsSignedIn)
