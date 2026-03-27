@@ -3,6 +3,7 @@ using Assets._Asteroids.Logic.Ads;
 using Assets._Asteroids.Logic.Ads.UnityAds;
 using Assets._Asteroids.Logic.Analytics;
 using Assets._Asteroids.Logic.Analytics.Firebase;
+using Assets._Asteroids.Logic.Constants;
 using Assets._Asteroids.Logic.IAP;
 using Assets._Asteroids.Logic.IAP.Products;
 using Assets._Asteroids.Logic.RemoteConfig;
@@ -16,8 +17,8 @@ namespace Assets._Asteroids.Logic.Installers
     {
         public override void InstallBindings()
         {
-            Container.Bind<LocalSaveProvider>().AsSingle();
-            Container.Bind<CloudSaveProvider>().AsSingle();
+            Container.Bind<ISaveProvider>().WithId(SaveConstants.LOCAL_ID).To<LocalSaveProvider>().AsSingle();
+            Container.Bind<ISaveProvider>().WithId(SaveConstants.CLOUD_ID).To<CloudSaveProvider>().AsSingle();
             Container.Bind<PlayerDataProvider>().AsSingle();
             Container.Bind<ISaveService>().To<SaveService>().FromNew().AsSingle();
             Container.Bind<SceneLoader>().AsSingle();
