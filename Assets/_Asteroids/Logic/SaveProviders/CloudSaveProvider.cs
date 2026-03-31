@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using Assets._Asteroids.Logic.Constants;
 using Cysharp.Threading.Tasks;
 using Newtonsoft.Json;
 using Unity.Services.Authentication;
@@ -14,7 +13,7 @@ namespace Assets._Asteroids.Logic.SaveProviders
 {
     public class CloudSaveProvider : ISaveProvider, IInitializable
     {
-        private const string SAVE_KEY = SaveConstants.CLOUD_SAVE_KEY;
+        private const string SAVE_KEY = "PLAYER_DATA_CLOUD";
         public async void Initialize()
         {
             await UnityServices.InitializeAsync();

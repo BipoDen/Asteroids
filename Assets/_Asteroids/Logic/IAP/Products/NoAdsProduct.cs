@@ -10,19 +10,19 @@ namespace Assets._Asteroids.Logic.IAP.Products
         public string ProductId => ProductsConstants.NO_ADS_PRODUCT;
         public ProductType ProductType => ProductType.NonConsumable;
         
-        private SaveData _saveData;
+        private PlayerDataProvider _dataProvider;
         private ISaveService _saveService;
 
         public NoAdsProduct(PlayerDataProvider playerDataProvider, ISaveService saveService)
         {
-            _saveData = playerDataProvider.SaveData;
+            _dataProvider = playerDataProvider;
             _saveService = saveService;
         }
         
         public void OnPurchased()
         {
-            _saveData.IsAdDisabled = true;
-            _saveService.Save(_saveData);
+            _dataProvider.SaveData.IsAdDisabled = true;
+            _saveService.Save(_dataProvider.SaveData);
         }
     }
 }

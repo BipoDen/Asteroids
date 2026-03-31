@@ -1069,7 +1069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.80784315}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.84313726}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1102,3 +1102,5 @@ MonoBehaviour:
   _maxScoreText: {fileID: 5260277546137471029}
   _restartButton: {fileID: 749268030342117446}
   _AdClickButton: {fileID: 4585562041035020535}
+  _gameOverPanel: {fileID: 5298062881872066097}
+  _background: {fileID: 8157821736951197090}

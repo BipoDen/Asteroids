@@ -13,13 +13,13 @@ namespace Assets._Asteroids.Logic.UI
 
         private IPurchasingService _purchaseService;
         private SceneLoader _sceneLoader;
-        private SaveData _saveData;
+        private PlayerDataProvider _dataProvider;
 
         public MainMenuUIPresenter(IPurchasingService purchaseService, SceneLoader sceneLoader, PlayerDataProvider playerDataProvider)
         {
             _purchaseService = purchaseService;
             _sceneLoader = sceneLoader;
-            _saveData = playerDataProvider.SaveData;
+            _dataProvider = playerDataProvider;
         }
 
         public void Initialize(MainMenuUIView view)
@@ -32,7 +32,7 @@ namespace Assets._Asteroids.Logic.UI
 
         private async void TryPurchase()
         {
-            if (_saveData.IsAdDisabled)
+            if (_dataProvider.SaveData.IsAdDisabled)
             {
                 _view.SetRemovingAdsInteractable(false);
                 return;
