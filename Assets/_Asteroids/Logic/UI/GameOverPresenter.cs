@@ -61,12 +61,14 @@ namespace Assets._Asteroids.Logic.UI
         private void Show()
         {
             _view.gameObject.SetActive(true);
+            _view.ShowPanel();
             _view.SetMaxScore(_saveData.MaxScore, _scoreService.Score);
             _view.ShowScore(_scoreService.Score);
         }
 
         private void Hide()
         {
+            _view.HidePanel();
             _view.gameObject.SetActive(false);
         }
 

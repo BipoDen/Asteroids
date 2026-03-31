@@ -25,6 +25,8 @@ namespace Assets._Asteroids.Logic.Ads.UnityAds
             _gameId = _androidGameId;
 #elif UNITY_EDITOR
             _gameId = _androidGameId;
+#else
+            return;
 #endif
             if (!Advertisement.isInitialized && Advertisement.isSupported)
             {
