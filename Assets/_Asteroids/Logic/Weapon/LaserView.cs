@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Assets._Asteroids.Logic.Weapon
 {
-    public class LaserView : Bullet
+    public class LaserView : MonoBehaviour
     {
         [SerializeField] private LineRenderer _lineRenderer;
         

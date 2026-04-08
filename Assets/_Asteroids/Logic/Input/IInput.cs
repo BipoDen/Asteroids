@@ -5,7 +5,7 @@ namespace Assets._Asteroids.Logic.Input
         public float Move();
         public float Rotate();
 
-        public bool isShootingPrimary();
-        public bool isShootingSecondary();
+        public bool IsShootingPrimary();
+        public bool IsShootingSecondary();
     }
 }

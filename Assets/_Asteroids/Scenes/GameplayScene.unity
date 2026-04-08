@@ -707,16 +707,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _canvas: {fileID: 1481547047}
-  _upLeftBorder: {x: -9, y: 5}
-  _downRightBorder: {x: 9, y: -5}
-  _playerShip: {fileID: 2596296227370932754, guid: c32fba6fed4c4834a85640c84acd5c87, type: 3}
   _playerStartPosition: {fileID: 1003029471}
-  _projectilePrefab: {fileID: 470231035377191864, guid: f05d3b2aacb6a404f82221176e977bb5, type: 3}
   _laserPrefab: {fileID: 1252488157113790694, guid: 8fecff6f81107844ca9cbd222114f6d7, type: 3}
-  _asteroidPrefab: {fileID: 2768491805092914741, guid: 44d62b74785873a479fd3913b8881f62, type: 3}
-  _ufoPrefab: {fileID: 1268523279168460956, guid: 2a465c6c12df4304f83d068518ab3622, type: 3}
-  _gameplayView: {fileID: 4583687850448732824, guid: 63b651d726503e04387f4f7317530556, type: 3}
-  _gameOverView: {fileID: 4904993151339451805, guid: de17b3ec4244a2a45a50997433ffe45b, type: 3}
 --- !u!4 &1737710678
 Transform:
   m_ObjectHideFlags: 0

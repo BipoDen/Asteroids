@@ -22,7 +22,6 @@ namespace Assets._Asteroids.Logic.Entities.Enemies
         public void Initialize(T prefab, int initialSize)
         {
             _prefab = prefab.gameObject;
-            Debug.Log(_container);
             for (int i = 0; i < initialSize; i++)
             {
                 var enemy = CreateNew();

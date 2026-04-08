@@ -1,8 +1,10 @@
 using System;
 using System.Threading;
 using Assets._Asteroids.Logic.Analytics;
+using Assets._Asteroids.Logic.Audio;
 using Assets._Asteroids.Logic.RemoteConfig;
 using Assets._Asteroids.Logic.RemoteConfig.Configs.Weapons;
+using Assets._Asteroids.Logic.Services;
 using UnityEngine;
 using Zenject;
 using Cysharp.Threading.Tasks;
@@ -17,7 +19,7 @@ namespace Assets._Asteroids.Logic.Weapon
         private Transform _startPosition;
         private LaserWeaponConfig _config;
         
-        public int MaxLaserCount { get; private set; } = 5;
+        public int MaxLaserCount { get; private set; }
         public int LaserCount { get; private set; }
         
         private bool _isLaserActive = false;
@@ -26,17 +28,22 @@ namespace Assets._Asteroids.Logic.Weapon
         private CancellationTokenSource _cts;
         private IAnalyticsService _analyticsService;
         private IRemoteConfig _configProvider;
+        private IAudioService _audioService;
+        private IVFXService _vfxService;
         
         public event Action<int> OnCountChanged;
         public event Action<float, float> OnReloadTimeChanged;
         public event Action OnShoot;
 
         [Inject]
-        public void Construct(LaserView laserPrefab, IAnalyticsService analyticsService, IRemoteConfig configProvider)
+        public void Construct(LaserView laserPrefab, IAnalyticsService analyticsService, IRemoteConfig configProvider, 
+            IAudioService audioService, IVFXService vfxService)
         {
             _laserPrefab = laserPrefab;
             _analyticsService = analyticsService;
             _configProvider = configProvider;
+            _audioService =  audioService;
+            _vfxService = vfxService;
         }
         
         public void Init(Transform launchOffset)
@@ -47,6 +54,7 @@ namespace Assets._Asteroids.Logic.Weapon
             _laserView = Object.Instantiate(_laserPrefab, _startPosition);
             _laserView.Init(_startPosition, _config.LaserDistance);
             _laserView.gameObject.SetActive(false);
+            MaxLaserCount = _config.MaxLaserCount;
             
             ResetWeapon();
         }
@@ -74,6 +82,7 @@ namespace Assets._Asteroids.Logic.Weapon
             if(LaserCount <= 0 || _isLaserActive)
                 return;
             
+            _audioService.PlayLaserShotAudio();
             ShootLaser(_startPosition);
         }
 
@@ -84,7 +93,7 @@ namespace Assets._Asteroids.Logic.Weapon
             _analyticsService.OnLaserUsingEvent();
             OnShoot?.Invoke();
             OnCountChanged?.Invoke(LaserCount);
-            
+            _vfxService.CreateLaserFlash(_startPosition);
             LaserDuration(_cts.Token).Forget();
             
             if (!_isLaserReloading)

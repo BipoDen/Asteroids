@@ -4,6 +4,7 @@ using Assets._Asteroids.Logic.RemoteConfig;
 using Assets._Asteroids.Logic.RemoteConfig.Configs;
 using Assets._Asteroids.Logic.RemoteConfig.Configs.Enemies;
 using Cysharp.Threading.Tasks;
+using UnityEngine;
 using Zenject;
 
 namespace Assets._Asteroids.Logic.Services
@@ -44,7 +45,13 @@ namespace Assets._Asteroids.Logic.Services
         private async UniTask SpawnAsteroid()
         {
             _isSpawning = true;
-            _factory.Create(_config.AsteroidSpeed, _config.FragmentCount, _config.ScorePerKill);
+            _factory.Create(_config.AsteroidSpeed, 
+                _config.FragmentSpeed, 
+                _config.FragmentCount, 
+                _config.ScorePerKill,
+                _config.ScorePerFragmentKill,
+                _config.AsteroidSize,
+                _config.FragmentSize);
             await UniTask.Delay(TimeSpan.FromSeconds(_config.SpawnDelay));
             _isSpawning = false;
         }

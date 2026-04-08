@@ -15,12 +15,12 @@ namespace Assets._Asteroids.Logic.Input
             return inputValue;
         }
 
-        public bool isShootingPrimary()
+        public bool IsShootingPrimary()
         {
             return UnityEngine.Input.GetMouseButton(0);
         }
 
-        public bool isShootingSecondary()
+        public bool IsShootingSecondary()
         {
             return UnityEngine.Input.GetMouseButton(1);
         }

@@ -37,7 +37,12 @@ namespace Assets._Asteroids.Logic.EntryPoint
             _saveConflictPresenter = saveConflictPresenter;
         }
 
-        public async void Initialize()
+        public void Initialize()
+        {
+            InitializeAsync();
+        }
+
+        private async UniTask InitializeAsync()
         {
             await InitializeUIAsync();
             await InitializeSaveAsync();

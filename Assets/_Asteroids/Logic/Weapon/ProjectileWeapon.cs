@@ -1,7 +1,9 @@
 using System;
+using Assets._Asteroids.Logic.Audio;
 using Assets._Asteroids.Logic.Factory;
 using Assets._Asteroids.Logic.RemoteConfig;
 using Assets._Asteroids.Logic.RemoteConfig.Configs.Weapons;
+using Assets._Asteroids.Logic.Services;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
@@ -16,17 +18,21 @@ namespace Assets._Asteroids.Logic.Weapon
         private BulletWeaponConfig _config;
         
         private ProjectileFactory _factory;
+        private IRemoteConfig _configProvider;
+        private IAudioService _audioService;
+        private IVFXService _vfxService;
+        
         public event Action<int> OnCountChanged;
         public event Action<float, float> OnReloadTimeChanged;
         public event Action OnShoot;
-        
-        private IRemoteConfig _configProvider;
 
         [Inject]
-        public void Construct(ProjectileFactory factory, IRemoteConfig configProvider)
+        public void Construct(ProjectileFactory factory, IRemoteConfig configProvider, IAudioService audioService, IVFXService vfxService)
         {
             _factory = factory;
             _configProvider = configProvider;
+            _audioService = audioService;
+            _vfxService = vfxService;
         }
 
         public void Init(Transform launchOffset)
@@ -46,9 +52,10 @@ namespace Assets._Asteroids.Logic.Weapon
                 return;
             
             _isReloading = true;
-            
+            _audioService.PlayProjectileShotAudio();
+            _vfxService.CreateProjectileFlash(_startPosition);
             CreateBullet(_startPosition);    
-            
+            OnShoot?.Invoke();
             Reload(_config.Delay).Forget();
         }
         
