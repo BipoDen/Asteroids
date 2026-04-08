@@ -1,4 +1,5 @@
 using System;
+using Assets._Asteroids.Logic.Audio;
 using Assets._Asteroids.Logic.Entities.Enemies;
 using Assets._Asteroids.Logic.Gameplay;
 using Assets._Asteroids.Logic.Input;
@@ -21,6 +22,7 @@ namespace Assets._Asteroids.Logic.Entities.Player
         private Transform _startPosition;
         private GameState _gameState;
         private IRemoteConfig _configProvider;
+        private IAudioService _audioService;
         public event Action OnGameOver;
         public event Action<Vector2, float> OnMove;
         public event Action<float> OnRotate;
@@ -32,13 +34,14 @@ namespace Assets._Asteroids.Logic.Entities.Player
         
         [Inject]
         public void Construct(IInput input, SpaceScreen spaceScreen, [Inject(Id = "StartPosition")] Transform startPosition, GameState gameState, 
-            IRemoteConfig configProvider)
+            IRemoteConfig configProvider, IAudioService audioService)
         {
             _input = input;
             _spaceScreen = spaceScreen;
             _startPosition = startPosition;
             _gameState = gameState;
             _configProvider = configProvider;
+            _audioService = audioService;
             
             _config = _configProvider.GetRemoteConfig<SpaceshipConfig>();
         }
@@ -85,14 +88,22 @@ namespace Assets._Asteroids.Logic.Entities.Player
         {
             if (other.gameObject.GetComponent<BaseEnemy>() != null)
             {
-                OnGameOver?.Invoke();
+                Die();
             }
+        }
+
+        private void Die()
+        {
+            OnGameOver?.Invoke();
+            _audioService.PlayExplosionAudio(1);
         }
         
         public void ResetPosition()
         {
             transform.position = _startPosition.position;
             transform.rotation = _startPosition.rotation;
+            OnMove?.Invoke(Vector2.zero, 0);
+            OnRotate?.Invoke(0);
         }
     }
 }

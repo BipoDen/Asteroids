@@ -12,7 +12,12 @@ namespace Assets._Asteroids.Logic.Ads.UnityAds
         private bool _testMode = true;
         private string _gameId;
         
-        public async void Initialize()
+        public void Initialize()
+        {
+            InitializeAsync();
+        }
+
+        private async UniTask InitializeAsync()
         {
             await StartWork();
         }
@@ -25,8 +30,6 @@ namespace Assets._Asteroids.Logic.Ads.UnityAds
             _gameId = _androidGameId;
 #elif UNITY_EDITOR
             _gameId = _androidGameId;
-#else
-            return;
 #endif
             if (!Advertisement.isInitialized && Advertisement.isSupported)
             {

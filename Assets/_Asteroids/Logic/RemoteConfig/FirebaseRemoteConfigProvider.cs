@@ -16,7 +16,6 @@ namespace Assets._Asteroids.Logic.RemoteConfig
 
         public T GetRemoteConfig<T>()
         {
-            
             var json   = FirebaseRemoteConfig.DefaultInstance.GetValue(typeof(T).Name).StringValue;
             var config = JsonConvert.DeserializeObject<T>(json);
             return config;

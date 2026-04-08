@@ -14,7 +14,12 @@ namespace Assets._Asteroids.Logic.SaveProviders
     public class CloudSaveProvider : ISaveProvider, IInitializable
     {
         private const string SAVE_KEY = "PLAYER_DATA_CLOUD";
-        public async void Initialize()
+        public void Initialize()
+        {
+            InitializeAsync();
+        }
+
+        private async UniTask InitializeAsync()
         {
             await UnityServices.InitializeAsync();
             if (!AuthenticationService.Instance.IsSignedIn)

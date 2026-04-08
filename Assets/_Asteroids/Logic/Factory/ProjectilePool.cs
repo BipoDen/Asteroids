@@ -11,19 +11,18 @@ namespace Assets._Asteroids.Logic.Factory
     {
         private readonly Stack<ProjectileView> _pool = new();
         private readonly Transform _container;
-        private readonly DiContainer _diContainer;
+        private readonly IInstantiator _instantiator;
         private GameObject _prefab;
 
-        public ProjectilePool(DiContainer diContainer, string groupName)
+        public ProjectilePool(IInstantiator instantiator, string groupName)
         {
-            _diContainer = diContainer;
+            _instantiator = instantiator;
             _container = new GameObject(groupName).transform;
         }
 
         public void Initialize(GameObject prefab, int initialSize)
         {
             _prefab = prefab;
-            Debug.Log(_container);
             for (int i = 0; i < initialSize; i++)
             {
                 var enemy = CreateNew();
@@ -47,7 +46,7 @@ namespace Assets._Asteroids.Logic.Factory
 
         private ProjectileView CreateNew()
         {
-            return _diContainer.InstantiatePrefabForComponent<ProjectileView>(_prefab, _container);
+            return _instantiator.InstantiatePrefabForComponent<ProjectileView>(_prefab, _container);
         }
 
         public void Dispose()

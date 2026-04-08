@@ -49,8 +49,9 @@ namespace Assets._Asteroids.Logic.Services
                 if(_cloudSaveProvider is IInitializable initializable)
                     initializable.Initialize();
             }
-            catch
+            catch (Exception e)
             {
+                Debug.LogException(e);
                 _saveData = await _localSaveProvider.Load();
                 return _saveData;
             }

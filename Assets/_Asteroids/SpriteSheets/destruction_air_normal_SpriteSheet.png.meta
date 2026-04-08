@@ -1,0 +1,1052 @@
+fileFormatVersion: 2
+guid: 884e86a3151c58e45bf52dbcf036efef
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6953121072456240178
+    second: destruction_air_normal_SpriteSheet_0
+  - first:
+      213: 937869671892757221
+    second: destruction_air_normal_SpriteSheet_1
+  - first:
+      213: -3828205426320695868
+    second: destruction_air_normal_SpriteSheet_2
+  - first:
+      213: -1321081238204640967
+    second: destruction_air_normal_SpriteSheet_3
+  - first:
+      213: -3113852557798998033
+    second: destruction_air_normal_SpriteSheet_4
+  - first:
+      213: 6520035329611560695
+    second: destruction_air_normal_SpriteSheet_5
+  - first:
+      213: 8144695980676761399
+    second: destruction_air_normal_SpriteSheet_6
+  - first:
+      213: 9219815650479843019
+    second: destruction_air_normal_SpriteSheet_7
+  - first:
+      213: -4631222929304042356
+    second: destruction_air_normal_SpriteSheet_8
+  - first:
+      213: 5285874587126073807
+    second: destruction_air_normal_SpriteSheet_9
+  - first:
+      213: 7878182918795684908
+    second: destruction_air_normal_SpriteSheet_10
+  - first:
+      213: -2673307222679139131
+    second: destruction_air_normal_SpriteSheet_11
+  - first:
+      213: 2743767646087504154
+    second: destruction_air_normal_SpriteSheet_12
+  - first:
+      213: 405808707066483130
+    second: destruction_air_normal_SpriteSheet_13
+  - first:
+      213: -208770041313718340
+    second: destruction_air_normal_SpriteSheet_14
+  - first:
+      213: 2250806430797718070
+    second: destruction_air_normal_SpriteSheet_15
+  - first:
+      213: -9091609336961472073
+    second: destruction_air_normal_SpriteSheet_16
+  - first:
+      213: 1898017064901355876
+    second: destruction_air_normal_SpriteSheet_17
+  - first:
+      213: 1362033403253868380
+    second: destruction_air_normal_SpriteSheet_18
+  - first:
+      213: 4000761751643017479
+    second: destruction_air_normal_SpriteSheet_19
+  - first:
+      213: 1151105541733525875
+    second: destruction_air_normal_SpriteSheet_20
+  - first:
+      213: 394971380197545256
+    second: destruction_air_normal_SpriteSheet_21
+  - first:
+      213: -6752654677890503612
+    second: destruction_air_normal_SpriteSheet_22
+  - first:
+      213: 247049140635387342
+    second: destruction_air_normal_SpriteSheet_23
+  - first:
+      213: 1648689462173034659
+    second: destruction_air_normal_SpriteSheet_24
+  - first:
+      213: -2248128398366700488
+    second: destruction_air_normal_SpriteSheet_25
+  - first:
+      213: 2409361202266857960
+    second: destruction_air_normal_SpriteSheet_26
+  - first:
+      213: -6029287827716768101
+    second: destruction_air_normal_SpriteSheet_27
+  - first:
+      213: -3803236644581349796
+    second: destruction_air_normal_SpriteSheet_28
+  - first:
+      213: -3028859138560254093
+    second: destruction_air_normal_SpriteSheet_29
+  - first:
+      213: 6595269853582061060
+    second: destruction_air_normal_SpriteSheet_30
+  - first:
+      213: -4048448229307230099
+    second: destruction_air_normal_SpriteSheet_31
+  - first:
+      213: -5115006434406477158
+    second: destruction_air_normal_SpriteSheet_32
+  - first:
+      213: 9217005294988547952
+    second: destruction_air_normal_SpriteSheet_33
+  - first:
+      213: 1279564439061340438
+    second: destruction_air_normal_SpriteSheet_34
+  - first:
+      213: 6045157177574708986
+    second: destruction_air_normal_SpriteSheet_35
+  - first:
+      213: -7721750261697368732
+    second: destruction_air_normal_SpriteSheet_36
+  - first:
+      213: -6023441584696762821
+    second: destruction_air_normal_SpriteSheet_37
+  - first:
+      213: -222148250272714515
+    second: destruction_air_normal_SpriteSheet_38
+  - first:
+      213: -2465588279147036120
+    second: destruction_air_normal_SpriteSheet_39
+  - first:
+      213: 5898224965301198845
+    second: destruction_air_normal_SpriteSheet_40
+  - first:
+      213: 8876317883891971291
+    second: destruction_air_normal_SpriteSheet_41
+  - first:
+      213: 7060211983355766918
+    second: destruction_air_normal_SpriteSheet_42
+  - first:
+      213: -5267806179569415190
+    second: destruction_air_normal_SpriteSheet_43
+  - first:
+      213: -6024238650322341407
+    second: destruction_air_normal_SpriteSheet_44
+  - first:
+      213: -4132290577802786995
+    second: destruction_air_normal_SpriteSheet_45
+  - first:
+      213: -7384415098745254855
+    second: destruction_air_normal_SpriteSheet_46
+  - first:
+      213: -5629338285011879008
+    second: destruction_air_normal_SpriteSheet_47
+  - first:
+      213: -6943266633140768823
+    second: destruction_air_normal_SpriteSheet_48
+  - first:
+      213: -8642919088666973186
+    second: destruction_air_normal_SpriteSheet_49
+  - first:
+      213: 2542581973402086568
+    second: destruction_air_normal_SpriteSheet_50
+  - first:
+      213: 3144429333231341620
+    second: destruction_air_normal_SpriteSheet_51
+  - first:
+      213: 1833875507823965529
+    second: destruction_air_normal_SpriteSheet_52
+  - first:
+      213: -3118348010923322543
+    second: destruction_air_normal_SpriteSheet_53
+  - first:
+      213: 954317023342298581
+    second: destruction_air_normal_SpriteSheet_54
+  - first:
+      213: 3166650596117066607
+    second: destruction_air_normal_SpriteSheet_55
+  - first:
+      213: 2407851213197193239
+    second: destruction_air_normal_SpriteSheet_56
+  - first:
+      213: -6768102236190973731
+    second: destruction_air_normal_SpriteSheet_57
+  - first:
+      213: 2278859805217466474
+    second: destruction_air_normal_SpriteSheet_58
+  - first:
+      213: -4390113311320542040
+    second: destruction_air_normal_SpriteSheet_59
+  - first:
+      213: -343649676943144015
+    second: destruction_air_normal_SpriteSheet_60
+  - first:
+      213: 733940972130480324
+    second: destruction_air_normal_SpriteSheet_61
+  - first:
+      213: -6115414969624187867
+    second: destruction_air_normal_SpriteSheet_62
+  - first:
+      213: -532855150693840175
+    second: destruction_air_normal_SpriteSheet_63
+  - first:
+      213: 3567232524066117
+    second: destruction_air_normal_SpriteSheet_64
+  - first:
+      213: 8418277359673012064
+    second: destruction_air_normal_SpriteSheet_65
+  - first:
+      213: 4906438257946216402
+    second: destruction_air_normal_SpriteSheet_66
+  - first:
+      213: -4521990156299064018
+    second: destruction_air_normal_SpriteSheet_67
+  - first:
+      213: 7228454122653894033
+    second: destruction_air_normal_SpriteSheet_68
+  - first:
+      213: 5346173524572391864
+    second: destruction_air_normal_SpriteSheet_69
+  - first:
+      213: 1059429055869951167
+    second: destruction_air_normal_SpriteSheet_70
+  - first:
+      213: 2714122755291057684
+    second: destruction_air_normal_SpriteSheet_71
+  - first:
+      213: -1511919918956209146
+    second: destruction_air_normal_SpriteSheet_72
+  - first:
+      213: -4642411179260547828
+    second: destruction_air_normal_SpriteSheet_73
+  - first:
+      213: 3830570325223451004
+    second: destruction_air_normal_SpriteSheet_74
+  - first:
+      213: 3162940862075083381
+    second: destruction_air_normal_SpriteSheet_75
+  - first:
+      213: -8980247933675516318
+    second: destruction_air_normal_SpriteSheet_76
+  - first:
+      213: 2626784987122921189
+    second: destruction_air_normal_SpriteSheet_77
+  - first:
+      213: 8967063083168570437
+    second: destruction_air_normal_SpriteSheet_78
+  - first:
+      213: 4839125673923767556
+    second: destruction_air_normal_SpriteSheet_79
+  - first:
+      213: -4341991174034295094
+    second: destruction_air_normal_SpriteSheet_80
+  - first:
+      213: -4113070951678408217
+    second: destruction_air_normal_SpriteSheet_81
+  - first:
+      213: 2764458594562159991
+    second: destruction_air_normal_SpriteSheet_82
+  - first:
+      213: -1800099173406079713
+    second: destruction_air_normal_SpriteSheet_83
+  - first:
+      213: 480738956172419867
+    second: destruction_air_normal_SpriteSheet_84
+  - first:
+      213: -6332712668749108025
+    second: destruction_air_normal_SpriteSheet_85
+  - first:
+      213: -6580158110067494807
+    second: destruction_air_normal_SpriteSheet_86
+  - first:
+      213: -4874902606539178796
+    second: destruction_air_normal_SpriteSheet_87
+  - first:
+      213: 3506216337704488391
+    second: destruction_air_normal_SpriteSheet_88
+  - first:
+      213: 2372738089838301760
+    second: destruction_air_normal_SpriteSheet_89
+  - first:
+      213: 577831578710056272
+    second: destruction_air_normal_SpriteSheet_90
+  - first:
+      213: 4261897076258036394
+    second: destruction_air_normal_SpriteSheet_91
+  - first:
+      213: 6101543369738448299
+    second: destruction_air_normal_SpriteSheet_92
+  - first:
+      213: 8328145795010023626
+    second: destruction_air_normal_SpriteSheet_93
+  - first:
+      213: -4069762759493283575
+    second: destruction_air_normal_SpriteSheet_94
+  - first:
+      213: 6998502515254060191
+    second: destruction_air_normal_SpriteSheet_95
+  - first:
+      213: 8240420591650406924
+    second: destruction_air_normal_SpriteSheet_96
+  - first:
+      213: 6754067277354086406
+    second: destruction_air_normal_SpriteSheet_97
+  - first:
+      213: -6046835881918613573
+    second: destruction_air_normal_SpriteSheet_98
+  - first:
+      213: -2236473531653349587
+    second: destruction_air_normal_SpriteSheet_99
+  - first:
+      213: 6676992047981494221
+    second: destruction_air_normal_SpriteSheet_100
+  - first:
+      213: 7086482763039406463
+    second: destruction_air_normal_SpriteSheet_101
+  - first:
+      213: 377305328276332438
+    second: destruction_air_normal_SpriteSheet_102
+  - first:
+      213: 7894101578281663330
+    second: destruction_air_normal_SpriteSheet_103
+  - first:
+      213: 3448126369378661360
+    second: destruction_air_normal_SpriteSheet_104
+  - first:
+      213: 1563111336788219684
+    second: destruction_air_normal_SpriteSheet_105
+  - first:
+      213: 558874435088954818
+    second: destruction_air_normal_SpriteSheet_106
+  - first:
+      213: -7935906933969846854
+    second: destruction_air_normal_SpriteSheet_107
+  - first:
+      213: -4387074914308237813
+    second: destruction_air_normal_SpriteSheet_108
+  - first:
+      213: 4569216848331574511
+    second: destruction_air_normal_SpriteSheet_109
+  - first:
+      213: -3189124759009593626
+    second: destruction_air_normal_SpriteSheet_110
+  - first:
+      213: 4766198873177420948
+    second: destruction_air_normal_SpriteSheet_111
+  - first:
+      213: -5935653703839320028
+    second: destruction_air_normal_SpriteSheet_112
+  - first:
+      213: 4913995643267474105
+    second: destruction_air_normal_SpriteSheet_113
+  - first:
+      213: -5159031849818817816
+    second: destruction_air_normal_SpriteSheet_114
+  - first:
+      213: -5077615016911885021
+    second: destruction_air_normal_SpriteSheet_115
+  - first:
+      213: 8541396552288551482
+    second: destruction_air_normal_SpriteSheet_116
+  - first:
+      213: 384262934340178823
+    second: destruction_air_normal_SpriteSheet_117
+  - first:
+      213: -571476146569623968
+    second: destruction_air_normal_SpriteSheet_118
+  - first:
+      213: -4841937065816414913
+    second: destruction_air_normal_SpriteSheet_119
+  - first:
+      213: -7504653667298281088
+    second: destruction_air_normal_SpriteSheet_120
+  - first:
+      213: 740982443467701441
+    second: destruction_air_normal_SpriteSheet_121
+  - first:
+      213: -3937786032788656122
+    second: destruction_air_normal_SpriteSheet_122
+  - first:
+      213: 2119841462973825382
+    second: destruction_air_normal_SpriteSheet_123
+  - first:
+      213: -2698393889792110669
+    second: destruction_air_normal_SpriteSheet_124
+  - first:
+      213: 4842985735869987544
+    second: destruction_air_normal_SpriteSheet_125
+  - first:
+      213: -6219873204936341608
+    second: destruction_air_normal_SpriteSheet_126
+  - first:
+      213: 501628927578657428
+    second: destruction_air_normal_SpriteSheet_127
+  - first:
+      213: 6253903110021736720
+    second: destruction_air_normal_SpriteSheet_128
+  - first:
+      213: 5502783183502528670
+    second: destruction_air_normal_SpriteSheet_129
+  - first:
+      213: -1145780553612513730
+    second: destruction_air_normal_SpriteSheet_130
+  - first:
+      213: 2067768944392614624
+    second: destruction_air_normal_SpriteSheet_131
+  - first:
+      213: 1376842869984799578
+    second: destruction_air_normal_SpriteSheet_132
+  - first:
+      213: -8651270455955691652
+    second: destruction_air_normal_SpriteSheet_133
+  - first:
+      213: 6215434969272511428
+    second: destruction_air_normal_SpriteSheet_134
+  - first:
+      213: -7446433737027391972
+    second: destruction_air_normal_SpriteSheet_135
+  - first:
+      213: 1956618600477133805
+    second: destruction_air_normal_SpriteSheet_136
+  - first:
+      213: 2279548408960156047
+    second: destruction_air_normal_SpriteSheet_137
+  - first:
+      213: -4998498563785199268
+    second: destruction_air_normal_SpriteSheet_138
+  - first:
+      213: 1867606739869316287
+    second: destruction_air_normal_SpriteSheet_139
+  - first:
+      213: -8056165126976866839
+    second: destruction_air_normal_SpriteSheet_140
+  - first:
+      213: 499919377205355721
+    second: destruction_air_normal_SpriteSheet_141
+  - first:
+      213: -6478703148727007393
+    second: destruction_air_normal_SpriteSheet_142
+  - first:
+      213: 1132804463444085842
+    second: destruction_air_normal_SpriteSheet_143
+  - first:
+      213: -7730131816306148164
+    second: destruction_air_normal_SpriteSheet_144
+  - first:
+      213: -5822604165705243103
+    second: destruction_air_normal_SpriteSheet_145
+  - first:
+      213: 3910051459712855931
+    second: destruction_air_normal_SpriteSheet_146
+  - first:
+      213: -4688971952438830418
+    second: destruction_air_normal_SpriteSheet_147
+  - first:
+      213: -8105904373001877196
+    second: destruction_air_normal_SpriteSheet_148
+  - first:
+      213: 2965271459446840616
+    second: destruction_air_normal_SpriteSheet_149
+  - first:
+      213: 5098222149228317801
+    second: destruction_air_normal_SpriteSheet_150
+  - first:
+      213: -6819167205769528799
+    second: destruction_air_normal_SpriteSheet_151
+  - first:
+      213: 8834610420110702631
+    second: destruction_air_normal_SpriteSheet_152
+  - first:
+      213: -3899295352512030182
+    second: destruction_air_normal_SpriteSheet_153
+  - first:
+      213: 3823372176300254144
+    second: destruction_air_normal_SpriteSheet_154
+  - first:
+      213: 9178244521434612752
+    second: destruction_air_normal_SpriteSheet_155
+  - first:
+      213: -9047816937701282224
+    second: destruction_air_normal_SpriteSheet_156
+  - first:
+      213: -7868458670081749103
+    second: destruction_air_normal_SpriteSheet_157
+  - first:
+      213: -2564791428045921114
+    second: destruction_air_normal_SpriteSheet_158
+  - first:
+      213: 1900963459750847448
+    second: destruction_air_normal_SpriteSheet_159
+  - first:
+      213: -3043754934442382534
+    second: destruction_air_normal_SpriteSheet_160
+  - first:
+      213: 7866049322332719343
+    second: destruction_air_normal_SpriteSheet_161
+  - first:
+      213: 8679076831138072583
+    second: destruction_air_normal_SpriteSheet_162
+  - first:
+      213: 7915474595822143534
+    second: destruction_air_normal_SpriteSheet_163
+  - first:
+      213: -5808618031575029746
+    second: destruction_air_normal_SpriteSheet_164
+  - first:
+      213: 3708455709708652416
+    second: destruction_air_normal_SpriteSheet_165
+  - first:
+      213: 7429061287658811223
+    second: destruction_air_normal_SpriteSheet_166
+  - first:
+      213: 5404162381403437590
+    second: destruction_air_normal_SpriteSheet_167
+  - first:
+      213: -5177545716171047295
+    second: destruction_air_normal_SpriteSheet_168
+  - first:
+      213: 9155806964136110952
+    second: destruction_air_normal_SpriteSheet_169
+  - first:
+      213: -5220549547158937260
+    second: destruction_air_normal_SpriteSheet_170
+  - first:
+      213: 5145389779721659217
+    second: destruction_air_normal_SpriteSheet_171
+  - first:
+      213: 3183649106466215982
+    second: destruction_air_normal_SpriteSheet_172
+  - first:
+      213: 3310997880502442888
+    second: destruction_air_normal_SpriteSheet_173
+  - first:
+      213: -8433169465086445372
+    second: destruction_air_normal_SpriteSheet_174
+  - first:
+      213: -7744107615277841722
+    second: destruction_air_normal_SpriteSheet_175
+  - first:
+      213: -8576978094188560817
+    second: destruction_air_normal_SpriteSheet_176
+  - first:
+      213: -1009710373041106999
+    second: destruction_air_normal_SpriteSheet_177
+  - first:
+      213: -2884848009798429797
+    second: destruction_air_normal_SpriteSheet_178
+  - first:
+      213: 2240105978001890203
+    second: destruction_air_normal_SpriteSheet_179
+  - first:
+      213: 1206797281790399307
+    second: destruction_air_normal_SpriteSheet_180
+  - first:
+      213: -6641186635479624826
+    second: destruction_air_normal_SpriteSheet_181
+  - first:
+      213: 955283407398236440
+    second: destruction_air_normal_SpriteSheet_182
+  - first:
+      213: 2074620693568268458
+    second: destruction_air_normal_SpriteSheet_183
+  - first:
+      213: -5477318508156475507
+    second: destruction_air_normal_SpriteSheet_184
+  - first:
+      213: -5319616277097100322
+    second: destruction_air_normal_SpriteSheet_185
+  - first:
+      213: 4907174984299322091
+    second: destruction_air_normal_SpriteSheet_186
+  - first:
+      213: 1262842562583357519
+    second: destruction_air_normal_SpriteSheet_187
+  - first:
+      213: -7255758296622565432
+    second: destruction_air_normal_SpriteSheet_188
+  - first:
+      213: 5860051915459405326
+    second: destruction_air_normal_SpriteSheet_189
+  - first:
+      213: 3799890469291269687
+    second: destruction_air_normal_SpriteSheet_190
+  - first:
+      213: -603514422503260512
+    second: destruction_air_normal_SpriteSheet_191
+  - first:
+      213: 3055065467815587451
+    second: destruction_air_normal_SpriteSheet_192
+  - first:
+      213: 8185733734502368649
+    second: destruction_air_normal_SpriteSheet_193
+  - first:
+      213: 8613320517595239179
+    second: destruction_air_normal_SpriteSheet_194
+  - first:
+      213: -3463547885368107446
+    second: destruction_air_normal_SpriteSheet_195
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 200
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: destruction_air_normal_SpriteSheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23c8904b6c27e7060800000000000000
+      internalID: 6953121072456240178
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: destruction_air_normal_SpriteSheet_1
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5eaa7ce5f7bf30d00800000000000000
+      internalID: 937869671892757221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: destruction_air_normal_SpriteSheet_2
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cd9eec827b7fdac0800000000000000
+      internalID: -3828205426320695868
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: destruction_air_normal_SpriteSheet_3
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1536
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 931116dfc939aade0800000000000000
+      internalID: -1321081238204640967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: destruction_air_normal_SpriteSheet_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: feff279b89f59c4d0800000000000000
+      internalID: -3113852557798998033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: destruction_air_normal_SpriteSheet_5
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7f67e707691db7a50800000000000000
+      internalID: 6520035329611560695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: destruction_air_normal_SpriteSheet_6
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7374acb87d5c70170800000000000000
+      internalID: 8144695980676761399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: destruction_air_normal_SpriteSheet_7
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 1024
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc620754c7d53ff70800000000000000
+      internalID: 9219815650479843019
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: destruction_air_normal_SpriteSheet_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c84403778479abfb0800000000000000
+      internalID: -4631222929304042356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: destruction_air_normal_SpriteSheet_9
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc90ae46ee23b5940800000000000000
+      internalID: 5285874587126073807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: destruction_air_normal_SpriteSheet_10
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c2ced5ecf9de45d60800000000000000
+      internalID: 7878182918795684908
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: destruction_air_normal_SpriteSheet_11
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 512
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5cc49b8ae3186ead0800000000000000
+      internalID: -2673307222679139131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: destruction_air_normal_SpriteSheet_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a1161431322d31620800000000000000
+      internalID: 2743767646087504154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: destruction_air_normal_SpriteSheet_13
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ab155777ed8b1a500800000000000000
+      internalID: 405808707066483130
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: destruction_air_normal_SpriteSheet_14
+      rect:
+        serializedVersion: 2
+        x: 1024
+        y: 0
+        width: 512
+        height: 512
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cbf80c7e0cc4a1df0800000000000000
+      internalID: -208770041313718340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 00b0cb9c818b3d84b9f935ac3efd5fd0
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":4.0,"y":4.0},"gridSpriteSize":{"x":512.0,"y":512.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      destruction_air_normal_SpriteSheet_0: 6953121072456240178
+      destruction_air_normal_SpriteSheet_1: 937869671892757221
+      destruction_air_normal_SpriteSheet_10: 7878182918795684908
+      destruction_air_normal_SpriteSheet_11: -2673307222679139131
+      destruction_air_normal_SpriteSheet_12: 2743767646087504154
+      destruction_air_normal_SpriteSheet_13: 405808707066483130
+      destruction_air_normal_SpriteSheet_14: -208770041313718340
+      destruction_air_normal_SpriteSheet_2: -3828205426320695868
+      destruction_air_normal_SpriteSheet_3: -1321081238204640967
+      destruction_air_normal_SpriteSheet_4: -3113852557798998033
+      destruction_air_normal_SpriteSheet_5: 6520035329611560695
+      destruction_air_normal_SpriteSheet_6: 8144695980676761399
+      destruction_air_normal_SpriteSheet_7: 9219815650479843019
+      destruction_air_normal_SpriteSheet_8: -4631222929304042356
+      destruction_air_normal_SpriteSheet_9: 5285874587126073807
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

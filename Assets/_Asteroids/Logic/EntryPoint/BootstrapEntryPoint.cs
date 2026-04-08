@@ -1,6 +1,7 @@
 using Assets._Asteroids.Logic.Constants;
 using Assets._Asteroids.Logic.RemoteConfig;
 using Assets._Asteroids.Logic.Services;
+using Cysharp.Threading.Tasks;
 using Zenject;
 
 namespace Assets._Asteroids.Logic.EntryPoint
@@ -16,7 +17,12 @@ namespace Assets._Asteroids.Logic.EntryPoint
             _sceneLoader = sceneLoader;
         }
 
-        public async void Initialize()
+        public void Initialize()
+        {
+            InitializeAsync();
+        }
+
+        private async UniTask InitializeAsync()
         {
             await _remoteConfig.Initialize();
             _sceneLoader.LoadScene(GameplayConstants.MAIN_MENU_SCENE_NAME);

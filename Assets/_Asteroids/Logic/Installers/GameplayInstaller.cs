@@ -1,4 +1,5 @@
 using Assets._Asteroids.Logic.Addressable;
+using Assets._Asteroids.Logic.Audio;
 using Assets._Asteroids.Logic.Constants;
 using Assets._Asteroids.Logic.Entities.Enemies;
 using Assets._Asteroids.Logic.Entities.Player;
@@ -38,9 +39,11 @@ namespace Assets._Asteroids.Logic.Installers
 
         private void BindServices()
         {
-            Container.Bind<StatsService>().FromNew().AsSingle();
+            Container.BindInterfacesAndSelfTo<StatsService>().FromNew().AsSingle();
             Container.Bind<GameState>().FromNew().AsSingle();
             Container.Bind<ScoreService>().FromNew().AsSingle();
+            Container.BindInterfacesAndSelfTo<AudioService>().AsSingle();
+            Container.BindInterfacesAndSelfTo<VFXService>().AsSingle();
         }
         
         private void BindPlayer()

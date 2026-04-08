@@ -1,6 +1,8 @@
+using Assets._Asteroids.Logic.Audio;
 using Assets._Asteroids.Logic.Entities.Enemies;
 using Assets._Asteroids.Logic.Gameplay;
 using Assets._Asteroids.Logic.Repository;
+using Assets._Asteroids.Logic.Services;
 using UnityEngine;
 
 namespace Assets._Asteroids.Logic.Factory
@@ -10,12 +12,16 @@ namespace Assets._Asteroids.Logic.Factory
         private EnemyPool<UFOEnemy> _pool;
         private SpaceScreen _spaceScreen;
         private EnemyRepository _repository;
+        private IVFXService _vfxService;
+        private IAudioService _audioService;
 
-        public UFOFactory(EnemyPool<UFOEnemy> pool, SpaceScreen spaceScreen, EnemyRepository repository)
+        public UFOFactory(EnemyPool<UFOEnemy> pool, SpaceScreen spaceScreen, EnemyRepository repository, IVFXService vfxService, IAudioService audioService)
         {
             _pool = pool;
             _spaceScreen = spaceScreen;
             _repository = repository;
+            _vfxService = vfxService;
+            _audioService = audioService;
         }
 
         public UFOEnemy Create(Transform playerTarget, float speed, int score)
@@ -30,6 +36,8 @@ namespace Assets._Asteroids.Logic.Factory
             
             void Despawn()
             {
+                _vfxService.CreateExplosion(ufoEnemy.transform);
+                _audioService.PlayExplosionAudio(.3f);
                 _repository.UnregisterEnemy(ufoEnemy);
                 _pool.Despawn(ufoEnemy);
             }    

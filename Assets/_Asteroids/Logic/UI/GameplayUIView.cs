@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,6 +16,9 @@ namespace Assets._Asteroids.Logic.UI
 
         public void ChangeScore(int score)
         {
+            _scoreText.transform.DOKill();
+            _scoreText.transform.localScale = Vector3.one;
+            _scoreText.transform.DOPunchScale(Vector2.one * 1.1f, .25f);
             _scoreText.text = score.ToString();
         }
 

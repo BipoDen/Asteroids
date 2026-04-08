@@ -6,12 +6,12 @@ using UnityEngine;
 
 namespace Assets._Asteroids.Logic.Weapon
 {
-    public class ProjectileView : Bullet
+    public class ProjectileView :MonoBehaviour
     {
         private float _speed;
         private float _lifeTime;
 
-        public Action OnDied;
+        public event Action OnDied;
         private CancellationTokenSource _cts;
 
         private void OnEnable()
@@ -37,14 +37,15 @@ namespace Assets._Asteroids.Logic.Weapon
         
         private void FixedUpdate()
         {
-            transform.position += transform.up * _speed * Time.deltaTime;
+            transform.position += transform.up * _speed * Time.fixedDeltaTime;
         }
 
         private void OnCollisionEnter2D(Collision2D other)
         {
-            if (other.gameObject.GetComponent<BaseEnemy>() != null)
+            var enemy = other.gameObject.GetComponent<BaseEnemy>();
+            if (enemy != null)
             {
-                other.gameObject.GetComponent<BaseEnemy>().TakeDamage();
+                enemy.TakeDamage();
                 Despawn();  
             }
         }

@@ -1,4 +1,3 @@
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 using Zenject;
 
@@ -6,23 +5,20 @@ namespace Assets._Asteroids.Logic.Entities.Player
 {
     public class SpaceshipFactory
     {
-        private readonly DiContainer _container;
+        private readonly IInstantiator _instantiator;
         private readonly Transform _startPosition;
 
-        public SpaceshipFactory(DiContainer container, [Inject(Id = "StartPosition")] Transform startPosition)
+        public SpaceshipFactory(IInstantiator instantiator, [Inject(Id = "StartPosition")] Transform startPosition)
         {
-            _container = container;
+            _instantiator =  instantiator;
             _startPosition = startPosition;
         }
 
         public SpaceshipController CreatePlayer(SpaceshipController playerPrefab)
         {
-            var player = _container.InstantiatePrefabForComponent<SpaceshipController>(
+            var player = _instantiator.InstantiatePrefabForComponent<SpaceshipController>(
                 playerPrefab, _startPosition.position, Quaternion.identity, null);
-            
-            _container.BindInterfacesAndSelfTo<SpaceshipController>()
-                .FromInstance(player).AsSingle();
-            
+
             return player;
         }
     }

@@ -15,7 +15,7 @@ namespace Assets._Asteroids.Logic.Entities.Enemies
         
         public event Action OnDied;
         
-        private StatsService _statsService;
+        private IStatsService _statsService;
 
         private void Awake()
         {
@@ -32,7 +32,7 @@ namespace Assets._Asteroids.Logic.Entities.Enemies
         }
         
         [Inject]
-        public void Construct(StatsService statsService)
+        public void Construct(IStatsService statsService)
         {
             _statsService = statsService;
         }

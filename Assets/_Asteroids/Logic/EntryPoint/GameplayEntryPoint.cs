@@ -1,4 +1,5 @@
 using Assets._Asteroids.Logic.Addressable;
+using Assets._Asteroids.Logic.Audio;
 using Assets._Asteroids.Logic.Constants;
 using Assets._Asteroids.Logic.Entities.Enemies;
 using Assets._Asteroids.Logic.Entities.Player;
@@ -29,6 +30,8 @@ namespace Assets._Asteroids.Logic.EntryPoint
         private readonly Canvas _canvas;
         private readonly GameplayUIPresenter _gameplayUIPresenter;
         private readonly GameOverPresenter _gameoverUIPresenter;
+        private readonly IAudioService _audioService;
+        private readonly VFXService _vfxService;
         
         public GameplayEntryPoint( 
             ScoreService scoreService, 
@@ -44,7 +47,9 @@ namespace Assets._Asteroids.Logic.EntryPoint
             IInstantiator instantiator, 
             Canvas canvas, 
             GameplayUIPresenter gameplayUIPresenter, 
-            GameOverPresenter gameoverUIPresenter)
+            GameOverPresenter gameoverUIPresenter, 
+            IAudioService audioService, 
+            VFXService vfxService)
         {
             _scoreService = scoreService;
             _gameState = gameState;
@@ -58,13 +63,17 @@ namespace Assets._Asteroids.Logic.EntryPoint
             _canvas = canvas;
             _gameplayUIPresenter = gameplayUIPresenter;
             _gameoverUIPresenter = gameoverUIPresenter;
+            _audioService = audioService;
+            _vfxService = vfxService;
             _assetLoader = assetLoader;
             _instantiator =  instantiator;
         }
         public void Initialize()
         {
             _scoreService.Initialize();
-
+            
+            InitializeVFX().Forget();
+            InitializeAudio().Forget();
             InitializeEntitiesAsync().Forget();
             InitializeUI().Forget();
         }
@@ -104,6 +113,27 @@ namespace Assets._Asteroids.Logic.EntryPoint
             
             GameOverView uiGameOverView = _instantiator.InstantiatePrefabForComponent<GameOverView>(gameoverPrefab, _canvas.transform);
             _gameoverUIPresenter.Initialize(uiGameOverView);
+        }
+
+        private async UniTask InitializeAudio()
+        {
+            var audioPrefab = await _assetLoader.LoadAsync<GameObject>(AddressablesConstants.AUDIO_CONTROLLER_ID);
+            
+            AudioController audioController = _instantiator.InstantiatePrefabForComponent<AudioController>(audioPrefab);
+            _audioService.Initialize(audioController);
+            
+            _audioService.PlayBackgroundMusic();
+        }
+
+        private async UniTask InitializeVFX()
+        {
+            var (explosionPrefab, projectileFlashPrefab, laserFlashPrefab) = await UniTask.WhenAll(
+                _assetLoader.LoadAsync<GameObject>(AddressablesConstants.EXPLOSION_EFFECT_ID),
+                _assetLoader.LoadAsync<GameObject>(AddressablesConstants.PROJECTILE_FLASH_ID),
+                _assetLoader.LoadAsync<GameObject>(AddressablesConstants.LASER_FLASH_ID)
+            );
+            
+            _vfxService.Initialize(explosionPrefab, projectileFlashPrefab, laserFlashPrefab);
         }
     }
 }

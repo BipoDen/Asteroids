@@ -7,7 +7,11 @@ namespace Assets._Asteroids.Logic.RemoteConfig.Configs.Enemies
     {
         public float SpawnDelay;
         public float AsteroidSpeed;
+        public float FragmentSpeed;
         public int FragmentCount;
         public int ScorePerKill;
+        public int ScorePerFragmentKill;
+        public float AsteroidSize;
+        public float FragmentSize;
     }
 }
